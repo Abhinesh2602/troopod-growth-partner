@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import { Clock, Layers, RefreshCw } from "lucide-react";
+import { UserX, Bot, Handshake } from "lucide-react";
 
 const trustLogos = [
   "Agency One",
@@ -11,19 +11,19 @@ const trustLogos = [
 
 const problems = [
   {
-    icon: Clock,
-    title: "Turnaround too slow",
-    description: "Landing pages take days\nwhen campaigns need them now",
+    icon: UserX,
+    title: "Developer bandwidth limited",
+    description: "Internal teams have priorities\nlanding pages wait in queue",
   },
   {
-    icon: Layers,
-    title: "Too many variants",
-    description: "Creative testing demands\nrapid page iterations",
+    icon: Bot,
+    title: "AI tools don't get to live",
+    description: "Great for drafts and ideas\nnot for production-ready pages",
   },
   {
-    icon: RefreshCw,
-    title: "Constant revisions",
-    description: "Feedback loops stretch\ntimelines endlessly",
+    icon: Handshake,
+    title: "External partners move slow",
+    description: "Briefs, back-and-forth, delays\ntimelines stretch for every page",
   },
 ];
 
@@ -85,10 +85,10 @@ const AgencyLandingPage = () => {
             <section className="section-padding w-full">
               <div className="max-w-6xl mx-auto">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight">
+                  Your team can design fast.{" "}
                   <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
-                    Scaling creative output
-                  </span>{" "}
-                  shouldn't mean scaling headcount
+                    Going live is the bottleneck
+                  </span>
                 </h2>
 
                 <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-16 md:mt-20">
@@ -109,7 +109,7 @@ const AgencyLandingPage = () => {
                 </div>
 
                 <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl">
-                  Your campaigns move fast. Your landing pages should too
+                  So campaigns move fast, but landing pages don't keep up
                 </p>
               </div>
             </section>
