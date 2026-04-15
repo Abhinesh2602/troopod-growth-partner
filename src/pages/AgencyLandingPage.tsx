@@ -9,6 +9,24 @@ const trustLogos = [
   "Agency Five",
 ];
 
+const problems = [
+  {
+    icon: Clock,
+    title: "Turnaround too slow",
+    description: "Landing pages take days\nwhen campaigns need them now",
+  },
+  {
+    icon: Layers,
+    title: "Too many variants",
+    description: "Creative testing demands\nrapid page iterations",
+  },
+  {
+    icon: RefreshCw,
+    title: "Constant revisions",
+    description: "Feedback loops stretch\ntimelines endlessly",
+  },
+];
+
 const AgencyLandingPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
