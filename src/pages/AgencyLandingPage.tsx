@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import { UserX, Bot, Handshake } from "lucide-react";
+import { UserX, Bot, Handshake, Layers, Award, Zap } from "lucide-react";
 
 const trustLogos = [
   "Agency One",
@@ -110,6 +110,57 @@ const AgencyLandingPage = () => {
 
                 <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl">
                   So campaigns move fast, but landing pages don't keep up
+                </p>
+              </div>
+            </section>
+
+            {/* Section 03 — About / USPs */}
+            <div className="w-full h-px bg-border" />
+            <section className="section-padding w-full">
+              <div className="max-w-6xl mx-auto">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight">
+                  Meet Troopod:{" "}
+                  <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
+                    The full-stack, AI-native website growth partner
+                  </span>
+                </h2>
+
+                <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-16 md:mt-20">
+                  {[
+                    {
+                      icon: Layers,
+                      title: "End-to-end Ownership",
+                      description: "From strategy to deployment\nto optimization",
+                    },
+                    {
+                      icon: Award,
+                      title: "Proven Performance",
+                      description: "Positive results across 100+ consumer brands",
+                    },
+                    {
+                      icon: Zap,
+                      title: "AI-driven Execution",
+                      description: "10X faster execution without compromising quality",
+                    },
+                  ].map((usp) => (
+                    <div
+                      key={usp.title}
+                      className="bg-card border border-border rounded-lg p-10 md:p-12 text-center"
+                    >
+                      <div className="flex justify-center mb-6">
+                        <usp.icon className="w-10 h-10 text-primary" />
+                      </div>
+                      <h3 className="text-lg font-medium mb-2 whitespace-nowrap">{usp.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
+                        {usp.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
+                  Troopod combines human expertise with AI execution to help marketing
+                  teams move faster and get real results
                 </p>
               </div>
             </section>
