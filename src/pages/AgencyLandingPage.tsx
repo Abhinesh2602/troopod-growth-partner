@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import { Link } from "react-router-dom";
 
 const trustLogos = [
   "Agency One",
@@ -14,7 +13,6 @@ const AgencyLandingPage = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       <main className="pt-16">
-        {/* Hero Section */}
         <section className="section-padding text-center">
           <div className="max-w-6xl mx-auto flex flex-col items-center">
             <div className="py-20 md:py-28 flex flex-col items-center gap-6">
@@ -28,10 +26,26 @@ const AgencyLandingPage = () => {
               <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl max-w-3xl">
                 Built for performance marketing agencies doing heavy creative testing and launching new campaigns every now and then
               </p>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-center gap-4 mt-2">
+                <a
+                  href="mailto:hello@troopod.io"
+                  className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-8 py-4 text-base font-medium hover:opacity-90 transition-opacity"
+                >
+                  Get your first page live Now
+                </a>
+                <a
+                  href="#how-it-works"
+                  className="inline-flex items-center justify-center rounded-lg border border-border text-foreground px-8 py-4 text-base font-medium hover:bg-secondary transition-colors"
+                >
+                  See how it works
+                </a>
+              </div>
             </div>
 
             {/* Trust Line */}
-            <div className="mb-12">
+            <div className="mt-4">
               <p className="text-sm font-medium text-muted-foreground tracking-wide mb-6">
                 Used by teams working @
               </p>
@@ -45,23 +59,6 @@ const AgencyLandingPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <a
-                href="mailto:hello@troopod.io"
-                className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-8 py-4 text-base font-medium hover:opacity-90 transition-opacity"
-              >
-                Get your first page live Now
-              </a>
-              <span className="text-muted-foreground text-sm">or</span>
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center justify-center rounded-lg border border-border text-foreground px-8 py-4 text-base font-medium hover:bg-secondary transition-colors"
-              >
-                See how it works
-              </a>
             </div>
           </div>
         </section>
