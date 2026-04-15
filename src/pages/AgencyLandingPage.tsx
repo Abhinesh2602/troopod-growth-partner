@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { Clock, Layers, RefreshCw } from "lucide-react";
 
 const trustLogos = [
   "Agency One",
@@ -6,6 +7,24 @@ const trustLogos = [
   "Agency Three",
   "Agency Four",
   "Agency Five",
+];
+
+const problems = [
+  {
+    icon: Clock,
+    title: "Turnaround too slow",
+    description: "Landing pages take days\nwhen campaigns need them now",
+  },
+  {
+    icon: Layers,
+    title: "Too many variants",
+    description: "Creative testing demands\nrapid page iterations",
+  },
+  {
+    icon: RefreshCw,
+    title: "Constant revisions",
+    description: "Feedback loops stretch\ntimelines endlessly",
+  },
 ];
 
 const AgencyLandingPage = () => {
@@ -60,6 +79,40 @@ const AgencyLandingPage = () => {
                 ))}
               </div>
             </div>
+
+            {/* Problem Section */}
+            <div className="w-full h-px bg-border" />
+            <section className="section-padding w-full">
+              <div className="max-w-6xl mx-auto">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight">
+                  <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
+                    Scaling creative output
+                  </span>{" "}
+                  shouldn't mean scaling headcount
+                </h2>
+
+                <div className="grid md:grid-cols-3 gap-6 md:gap-8 mt-16 md:mt-20">
+                  {problems.map((item) => (
+                    <div
+                      key={item.title}
+                      className="bg-card border border-border rounded-lg p-10 md:p-12 text-center"
+                    >
+                      <div className="flex justify-center mb-6">
+                        <item.icon className="w-10 h-10 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
+                        {item.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl">
+                  Your campaigns move fast. Your landing pages should too
+                </p>
+              </div>
+            </section>
           </div>
         </section>
       </main>
