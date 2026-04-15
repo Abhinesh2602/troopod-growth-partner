@@ -13,6 +13,7 @@ const teamMembers = [
   { id: 4, name: "Jyotishko Dutta", title: "Product Advisor", bio: "Digital Lead @ Shopify, Ex-Allbirds", photo: jyotishkoImg, objectPosition: "center 20%" },
   { id: 5, name: "Brenda Lando Fridman", title: "GTM Advisor", bio: "Partner Stage 2 Capital, GTM Fund", photo: brendaImg, objectPosition: "center 20%", scale: 1.075 },
   { id: 6, name: "Zvi Cole", title: "Product Advisor", bio: "Founder ZMG Advisors, Ex-Revlon, Nivea", photo: zviImg, objectPosition: "center 15%", scale: 1.175 },
+  { id: 7, name: "New Advisor", title: "Advisor", bio: "Details coming soon", photo: "", objectPosition: "center 20%" },
 ];
 
 const TeamSection = () => {
