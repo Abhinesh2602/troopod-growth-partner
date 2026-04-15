@@ -14,7 +14,11 @@ const teamMembers = [
   { id: 5, name: "Brenda Lando Fridman", title: "GTM Advisor", bio: "Partner Stage 2 Capital, GTM Fund", photo: brendaImg, objectPosition: "center 20%", scale: 1.075 },
   { id: 6, name: "Zvi Cole", title: "Product Advisor", bio: "Founder ZMG Advisors, Ex-Revlon, Nivea", photo: zviImg, objectPosition: "center 15%", scale: 1.175 },
   { id: 7, name: "New Advisor", title: "Advisor", bio: "Details coming soon", photo: "", objectPosition: "center 20%" },
+  { id: 8, name: "New Advisor", title: "Advisor", bio: "Details coming soon", photo: "", objectPosition: "center 20%" },
 ];
+
+const founders = teamMembers.filter((m) => m.id <= 3);
+const advisors = teamMembers.filter((m) => m.id > 3);
 
 const TeamSection = () => {
   return (
@@ -26,7 +30,7 @@ const TeamSection = () => {
         </h2>
 
         <div className="mt-16 md:mt-20">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto justify-items-center">
             {teamMembers.map((member) => (
               <div
                 key={member.id}
