@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import { Clock, Layers, RefreshCw } from "lucide-react";
 
 const trustLogos = [
   "Agency One",
