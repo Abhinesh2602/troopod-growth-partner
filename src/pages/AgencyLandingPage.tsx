@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import { UserX, Bot, Handshake } from "lucide-react";
+import { UserX, Bot, Handshake, Layers, Award, Zap } from "lucide-react";
 
 const trustLogos = [
   "Agency One",
