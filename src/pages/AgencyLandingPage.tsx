@@ -50,6 +50,13 @@ const productCards = [
     quote: "The quality and speed exceeded every agency we've worked with before",
     author: "Michael Torres, VP of Digital",
   },
+  {
+    image: "Project Delta",
+    title: "Scalable page systems for growing brands",
+    description: "Whether you need 5 pages or 50, the same quality and speed applies — built to scale with your growth",
+    quote: "Troopod became an extension of our team, not just another vendor",
+    author: "Priya Sharma, CMO",
+  },
 ];
 
 const ProductCardsSection = () => {
