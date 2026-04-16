@@ -392,7 +392,7 @@ const AgencyLandingPage = () => {
             </div>
 
             <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
-              No existing solution is built for the design-to-live workflow
+              No existing solution is built to fast-track design-to-live execution
             </p>
           </div>
         </section>
