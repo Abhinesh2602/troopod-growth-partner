@@ -28,6 +28,81 @@ const problems = [
   },
 ];
 
+const productCards = [
+  {
+    image: "Project Alpha",
+    title: "High-converting landing pages, built to perform",
+    description: "Every page is custom-built for speed, structure, and conversion — not dragged out of a template library",
+    quote: "Working with Troopod completely changed how fast we could launch new campaigns",
+    author: "Alex Johnson, Head of Growth",
+  },
+  {
+    image: "Project Beta",
+    title: "Campaign pages that match your creative velocity",
+    description: "Launch new variants as fast as your team can design them — no developer queue, no template constraints",
+    quote: "We went from launching one page a month to five pages a week without adding headcount",
+    author: "Sarah Chen, Marketing Director",
+  },
+  {
+    image: "Project Gamma",
+    title: "Performance-optimised pages from day one",
+    description: "Every build is tested for Core Web Vitals, mobile responsiveness, and conversion best practices before going live",
+    quote: "The quality and speed exceeded every agency we've worked with before",
+    author: "Michael Torres, VP of Digital",
+  },
+];
+
+const ProductCardsSection = () => {
+  const [current, setCurrent] = useState(0);
+  const prev = () => setCurrent((c) => (c === 0 ? productCards.length - 1 : c - 1));
+  const next = () => setCurrent((c) => (c === productCards.length - 1 ? 0 : c + 1));
+  const card = productCards[current];
+
+  return (
+    <section className="section-padding w-full">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight mb-16 md:mb-20">
+          What you{" "}
+          <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
+            actually get
+          </span>
+        </h2>
+
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-card border border-border rounded-2xl overflow-hidden">
+            <div className="w-full aspect-[16/10] bg-secondary flex items-center justify-center">
+              <span className="text-muted-foreground text-sm">{card.image}</span>
+            </div>
+            <div className="p-6 md:p-8 space-y-4">
+              <h3 className="text-xl md:text-2xl font-semibold">{card.title}</h3>
+              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{card.description}</p>
+              <div className="border-t border-border pt-4">
+                <p className="text-muted-foreground italic text-sm leading-relaxed">"{card.quote}"</p>
+                <p className="text-xs text-muted-foreground mt-2 font-medium">— {card.author}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <button onClick={prev} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Previous">
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <div className="flex gap-2">
+              {productCards.map((_, i) => (
+                <button key={i} onClick={() => setCurrent(i)} className={`w-2 h-2 rounded-full transition-colors ${i === current ? "bg-primary" : "bg-border"}`} />
+              ))}
+            </div>
+            <button onClick={next} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Next">
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const AgencyLandingPage = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
