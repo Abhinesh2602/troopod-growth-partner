@@ -397,7 +397,6 @@ const AgencyLandingPage = () => {
                 </div>
               </div>
             </section>
-            <ProductCardsSection />
           </div>
         </section>
       </main>
