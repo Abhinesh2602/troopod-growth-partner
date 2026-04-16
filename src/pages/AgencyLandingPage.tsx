@@ -319,7 +319,7 @@ const AgencyLandingPage = () => {
                 href="/#solutions"
                 className="inline-flex items-center justify-center rounded-lg border border-border text-foreground px-8 py-4 text-base font-medium hover:bg-secondary transition-colors"
               >
-                Check All Solutions
+                Explore All Solutions
               </a>
             </div>
           </div>
