@@ -61,8 +61,8 @@ const productCards = [
 const ProductCardsSection = () => {
   const [current, setCurrent] = useState(0);
   const total = productCards.length;
-  const prev = () => setCurrent((c) => c - 1);
-  const next = () => setCurrent((c) => c + 1);
+  const prev = () => setCurrent((c) => ((c - 1) % total + total) % total);
+  const next = () => setCurrent((c) => (c + 1) % total);
 
   const items = [...productCards, ...productCards, ...productCards];
   const offset = total;
