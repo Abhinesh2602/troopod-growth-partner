@@ -438,14 +438,14 @@ const AgencyLandingPage = () => {
         <div className="w-full h-px bg-border" />
         <section className="section-padding">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight mb-16 md:mb-20">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight mb-10 md:mb-16 lg:mb-20">
               The impact your agency{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
                 could be seeing
               </span>
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
                 { metric: "24h", label: "From design to live" },
                 { metric: "2X", label: "Higher margins" },
@@ -454,10 +454,10 @@ const AgencyLandingPage = () => {
               ].map((item) => (
                 <div
                   key={item.metric}
-                  className="bg-card border border-border rounded-lg p-8 md:p-10 text-center"
+                  className="bg-card border border-border rounded-lg p-5 sm:p-8 md:p-10 text-center"
                 >
-                  <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-3">{item.metric}</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{item.label}</p>
+                  <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-2 md:mb-3">{item.metric}</p>
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">{item.label}</p>
                 </div>
               ))}
             </div>
