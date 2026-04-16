@@ -93,8 +93,8 @@
 }
 
 @keyframes dot-glow-1 {
-  0%, 32% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
-  33%, 85% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
+  0%, 26% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
+  27%, 85% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
   86%, 100% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
 }
 
