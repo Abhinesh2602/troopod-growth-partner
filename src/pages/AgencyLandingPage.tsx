@@ -267,7 +267,7 @@ const AgencyLandingPage = () => {
             </div>
 
             <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
-              Launch faster, Test more, and Scale what works
+              Launch fast, Iterate more, and Win faster
             </p>
           </div>
         </section>
