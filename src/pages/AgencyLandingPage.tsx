@@ -411,7 +411,8 @@ const AgencyLandingPage = () => {
               way to go live
             </h2>
 
-            <div className="mt-16 md:mt-20 overflow-x-auto">
+            {/* Desktop table */}
+            <div className="mt-16 md:mt-20 hidden md:block overflow-x-auto">
               <table className="w-full border-collapse table-fixed" style={{ fontSize: '1.06rem' }}>
                 <colgroup>
                   <col className="w-[18%]" />
@@ -446,6 +447,25 @@ const AgencyLandingPage = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            {/* Mobile cards */}
+            <div className="mt-12 md:hidden space-y-4">
+              {[
+                { label: "Ownership", others: "Competing priorities · Low accountability · No ownership", troo: "Fully managed" },
+                { label: "Speed", others: "Limited bandwidth · Unpredictable · Fast for drafts only", troo: "Live in 24 hrs" },
+                { label: "Execution Flow", others: "Queue-based · Back-and-forth · Breaks before production", troo: "Structured, fast execution" },
+                { label: "Scalability", others: "Bottlenecks · Hard to scale · Broken workflow", troo: "Built for high volume" },
+                { label: "Outcome", others: "Delayed launches · Missed timelines · Never goes live", troo: "Launch-ready" },
+              ].map((row) => (
+                <div key={row.label} className="bg-card border border-border rounded-lg p-5">
+                  <p className="font-semibold text-foreground mb-3">{row.label}</p>
+                  <p className="text-muted-foreground text-xs leading-relaxed mb-3">{row.others}</p>
+                  <div className="border-t border-border pt-3">
+                    <p className="text-primary font-semibold text-sm">TrooLaunch: {row.troo}</p>
+                  </div>
+                </div>
+              ))}
             </div>
 
             <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
