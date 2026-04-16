@@ -243,7 +243,7 @@ const AgencyLandingPage = () => {
                 {
                   icon: Award,
                   title: "Proven at Scale",
-                  description: "Battle-tested across 100+ brands",
+                  description: "Battle-tested with 100+ brands",
                 },
                 {
                   icon: Send,
