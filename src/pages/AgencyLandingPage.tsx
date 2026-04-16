@@ -294,7 +294,7 @@ const AgencyLandingPage = () => {
                     top: 'calc(2.5rem + 1rem + 0.5rem - 1px)',
                     left: 'calc(100% / 6)',
                     right: 'calc(100% / 6)',
-                    animation: 'timeline-line-grow 2s ease-out forwards',
+                    animation: 'timeline-line-grow 3s ease-out infinite',
                     boxShadow: '0 0 8px hsl(262 83% 58% / 0.5)',
                   }}
                 />
@@ -304,15 +304,15 @@ const AgencyLandingPage = () => {
                   style={{
                     top: 'calc(2.5rem + 1rem + 0.5rem - 7px)',
                     left: 'calc(100% / 6)',
-                    animation: 'timeline-travel 2s ease-out forwards',
+                    animation: 'timeline-travel 3s ease-out infinite',
                     boxShadow: '0 0 12px hsl(262 83% 58% / 0.8)',
                     zIndex: 20,
                   }}
                 />
                 {[
-                  { step: "01", title: "Share your design or idea", description: "Figma, HTML, or just a brief", dotAnim: "dot-pulse-first 2s ease-out forwards" },
-                  { step: "02", title: "Troopod handles the build + QA", description: "Structure, integrations, everything production-ready", dotAnim: "dot-pulse-mid 2s ease-out forwards" },
-                  { step: "03", title: "Live in 24 hours", description: "Ready to launch with your campaigns", dotAnim: "dot-pulse 2s ease-out forwards" },
+                  { step: "01", title: "Share your design or idea", description: "Figma, HTML, or just a brief", dotAnim: "dot-pulse-first 3s ease-out infinite" },
+                  { step: "02", title: "Troopod handles the build + QA", description: "Structure, integrations, everything production-ready", dotAnim: "dot-pulse-mid 3s ease-out infinite" },
+                  { step: "03", title: "Live in 24 hours", description: "Ready to launch with your campaigns", dotAnim: "dot-pulse-last 3s ease-out infinite" },
                 ].map((item) => (
                   <div key={item.step} className="relative flex flex-col items-center text-center px-4">
                     <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">{item.step}</p>
