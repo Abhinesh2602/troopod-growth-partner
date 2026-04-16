@@ -395,6 +395,32 @@ const AgencyLandingPage = () => {
                     </div>
                   ))}
                 </div>
+
+                <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
+                  Real numbers from real projects — not hypotheticals
+                </p>
+              </div>
+            </section>
+
+            {/* Section 08 — Final CTA */}
+            <div className="w-full h-px bg-border" />
+            <section className="section-padding w-full">
+              <div className="max-w-3xl mx-auto text-center">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight mb-6">
+                  Ready to{" "}
+                  <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
+                    move faster?
+                  </span>
+                </h2>
+                <p className="text-muted-foreground text-lg md:text-xl mb-10 leading-relaxed">
+                  Send us your design and get your first page live — no contracts, no onboarding delays
+                </p>
+                <a
+                  href="mailto:hello@troopod.io"
+                  className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-10 py-4 text-lg font-medium hover:opacity-90 transition-opacity"
+                >
+                  Go Live in next 24 hrs
+                </a>
               </div>
             </section>
           </div>
