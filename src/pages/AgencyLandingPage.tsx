@@ -302,7 +302,7 @@ const AgencyLandingPage = () => {
                         className="absolute inset-0 rounded-full origin-left"
                         style={{
                           background: 'linear-gradient(90deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
-                          animation: 'timeline-line-grow 3s ease-out infinite',
+                          animation: 'timeline-line-grow 4.5s ease-out infinite',
                           boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
                         }}
                       />
@@ -313,7 +313,7 @@ const AgencyLandingPage = () => {
                           width: 12,
                           height: 12,
                           top: -5,
-                          animation: 'timeline-travel 3s ease-out infinite',
+                          animation: 'timeline-travel 4.5s ease-out infinite',
                           background: 'hsl(262 83% 58%)',
                           boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
                           zIndex: 20,
@@ -328,7 +328,7 @@ const AgencyLandingPage = () => {
                           style={{
                             background: 'hsl(240 4% 18%)',
                             border: '2px solid hsl(240 4% 25%)',
-                            animation: `dot-glow-${i} 3s ease-out infinite`,
+                            animation: `dot-glow-${i} 4.5s ease-out infinite`,
                           }}
                         />
                         <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
