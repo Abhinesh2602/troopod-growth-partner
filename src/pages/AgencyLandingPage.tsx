@@ -355,14 +355,21 @@ const AgencyLandingPage = () => {
             </h2>
 
             <div className="mt-16 md:mt-20 overflow-x-auto">
-              <table className="w-full border-collapse" style={{ fontSize: '1.06rem' }}>
+              <table className="w-full border-collapse table-fixed" style={{ fontSize: '1.06rem' }}>
+                <colgroup>
+                  <col className="w-[18%]" />
+                  <col className="w-[20.5%]" />
+                  <col className="w-[20.5%]" />
+                  <col className="w-[20.5%]" />
+                  <col className="w-[20.5%]" />
+                </colgroup>
                 <thead className="bg-card">
                   <tr className="border-b border-border/50">
                     <th className="text-left font-medium text-foreground py-6 pl-6 pr-4">Key Factors</th>
                     {["In-house Dev", "Freelancers", "AI Tools"].map((col) => (
-                      <th key={col} className="text-center font-medium text-muted-foreground py-6 px-4 min-w-[160px]">{col}</th>
+                      <th key={col} className="text-center font-medium text-muted-foreground py-6 px-4">{col}</th>
                     ))}
-                    <th className="text-center font-medium py-6 px-4 min-w-[160px] text-primary">TrooLaunch</th>
+                    <th className="text-center font-semibold py-6 px-4 text-primary">TrooLaunch</th>
                   </tr>
                 </thead>
                 <tbody className="bg-card">
@@ -376,7 +383,7 @@ const AgencyLandingPage = () => {
                     <tr key={row.label} className={i < arr.length - 1 ? "border-b border-border/50" : ""}>
                       <td className="py-6 pr-4 font-medium text-foreground pl-6">{row.label}</td>
                       {row.values.map((val, j) => (
-                        <td key={j} className={`py-6 px-4 text-center ${j === 3 ? "text-primary font-medium" : "text-muted-foreground"}`}>{val}</td>
+                        <td key={j} className={`py-6 px-4 text-center ${j === 3 ? "text-primary font-semibold" : "text-muted-foreground"}`}>{val}</td>
                       ))}
                     </tr>
                   ))}
