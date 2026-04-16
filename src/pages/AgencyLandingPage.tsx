@@ -287,8 +287,8 @@ const AgencyLandingPage = () => {
               {(() => {
                 const steps = [
                   { step: "01", title: "Share your design or idea", description: "Figma, HTML, or just a brief" },
-                  { step: "02", title: "Troopod handles the build + QA", description: "Structure, integrations, everything production-ready" },
-                  { step: "03", title: "Live in 24 hours", description: "Ready to launch with your campaigns" },
+                  { step: "02", title: "Align on requirements", description: "Flow, content, and key features locked" },
+                  { step: "03", title: "See your live preview", description: "Built, QA'd, and ready to launch" },
                 ];
                 const dotTop = 'calc(2.5rem + 1rem + 0.5rem - 1px)';
                 return (
