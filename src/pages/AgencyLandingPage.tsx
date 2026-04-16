@@ -67,37 +67,57 @@ const ProductCardsSection = () => {
             actually get
           </span>
         </h2>
+      </div>
 
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-card border border-border rounded-2xl overflow-hidden">
-            <div className="w-full aspect-[16/10] bg-secondary flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">{card.image}</span>
-            </div>
-            <div className="p-6 md:p-8 space-y-4">
-              <h3 className="text-xl md:text-2xl font-semibold">{card.title}</h3>
-              <p className="text-muted-foreground text-sm md:text-base leading-relaxed">{card.description}</p>
-              <div className="border-t border-border pt-4">
-                <p className="text-muted-foreground italic text-sm leading-relaxed">"{card.quote}"</p>
-                <p className="text-xs text-muted-foreground mt-2 font-medium">— {card.author}</p>
+      {/* Carousel with peek */}
+      <div className="relative overflow-hidden">
+        <div
+          className="flex transition-transform duration-500 ease-in-out"
+          style={{
+            transform: `translateX(calc(50% - ${current * 540 + 270}px))`,
+          }}
+        >
+          {productCards.map((card, i) => (
+            <div
+              key={i}
+              className="flex-shrink-0 px-4 transition-all duration-500"
+              style={{ width: 540 }}
+            >
+              <div
+                className={`bg-card border border-border rounded-2xl overflow-hidden transition-all duration-500 ${
+                  i === current ? "opacity-100 scale-100" : "opacity-40 scale-95"
+                }`}
+              >
+                <div className="w-full aspect-[16/10] bg-secondary flex items-center justify-center">
+                  <span className="text-muted-foreground text-sm">{card.image}</span>
+                </div>
+                <div className="p-6 space-y-4">
+                  <h3 className="text-xl font-semibold">{card.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
+                  <div className="border-t border-border pt-4">
+                    <p className="text-muted-foreground italic text-sm leading-relaxed">"{card.quote}"</p>
+                    <p className="text-xs text-muted-foreground mt-2 font-medium">— {card.author}</p>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-4 mt-8">
-            <button onClick={prev} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Previous">
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <div className="flex gap-2">
-              {productCards.map((_, i) => (
-                <button key={i} onClick={() => setCurrent(i)} className={`w-2 h-2 rounded-full transition-colors ${i === current ? "bg-primary" : "bg-border"}`} />
-              ))}
-            </div>
-            <button onClick={next} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Next">
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
+          ))}
         </div>
+      </div>
+
+      {/* Navigation */}
+      <div className="flex items-center justify-center gap-4 mt-8">
+        <button onClick={prev} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Previous">
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+        <div className="flex gap-2">
+          {productCards.map((_, i) => (
+            <button key={i} onClick={() => setCurrent(i)} className={`w-2 h-2 rounded-full transition-colors ${i === current ? "bg-primary" : "bg-border"}`} />
+          ))}
+        </div>
+        <button onClick={next} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Next">
+          <ArrowRight className="w-5 h-5" />
+        </button>
       </div>
     </section>
   );
