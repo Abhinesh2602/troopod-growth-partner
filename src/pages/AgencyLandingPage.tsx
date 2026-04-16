@@ -23,7 +23,7 @@ const problems = [
   {
     icon: Handshake,
     title: "External partners move slow",
-    description: "Briefs, back-and-forth, delays\ntimelines stretch for every page",
+    description: "Briefs, back-and-forth, delays\ntimelines for every page",
   },
 ];
 
