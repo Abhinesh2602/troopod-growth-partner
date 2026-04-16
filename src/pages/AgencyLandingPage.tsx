@@ -456,7 +456,7 @@ const AgencyLandingPage = () => {
                   key={item.metric}
                   className="bg-card border border-border rounded-lg p-8 md:p-10 text-center"
                 >
-                  <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3">{item.metric}</p>
+                  <p className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-3">{item.metric}</p>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.label}</p>
                 </div>
               ))}
