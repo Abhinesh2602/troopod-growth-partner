@@ -350,7 +350,7 @@ const AgencyLandingPage = () => {
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
                 TrooLaunch
               </span>{" "}
-              is the fastest, most reliable way to go live
+              is the fastest, easiest, and most reliable way to go live
             </h2>
 
             <div className="mt-16 md:mt-20 overflow-x-auto">
