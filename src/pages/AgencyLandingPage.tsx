@@ -80,7 +80,7 @@ const ProductCardsSection = () => {
           {productCards.map((card, i) => (
             <div
               key={i}
-              className="flex-shrink-0 px-4 transition-all duration-500"
+              className="flex-shrink-0 transition-all duration-500"
               style={{ width: 540 }}
             >
               <div
