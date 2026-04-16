@@ -44,10 +44,10 @@ const productCards = [
   },
   {
     image: "Project Gamma",
-    title: "Performance-optimised pages from day one",
-    description: "Every build is tested for Core Web Vitals, mobile responsiveness, and conversion best practices before going live",
-    quote: "The quality and speed exceeded every agency we've worked with before",
-    author: "Michael Torres, VP of Digital",
+    title: "Idea → Dev in 48 hours",
+    description: "From concept to a fully functional page, ready to launch",
+    quote: "We went from idea to a fully functional page in under 48 hours, something that would normally take weeks, if not months.",
+    author: "Ronak Shah, Obvi",
   },
   {
     image: "Project Delta",
