@@ -248,6 +248,48 @@ const AgencyLandingPage = () => {
                 </p>
               </div>
             </section>
+
+            {/* Section 06 — Product Card */}
+            <div className="w-full h-px bg-border" />
+            <section className="section-padding w-full">
+              <div className="max-w-6xl mx-auto">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight mb-16 md:mb-20">
+                  What you{" "}
+                  <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
+                    actually get
+                  </span>
+                </h2>
+
+                <div className="max-w-3xl mx-auto bg-card border border-border rounded-2xl overflow-hidden">
+                  {/* Image Placeholder */}
+                  <div className="w-full aspect-video bg-secondary flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">Image Placeholder</span>
+                  </div>
+
+                  <div className="p-8 md:p-12 space-y-6">
+                    {/* Title */}
+                    <h3 className="text-2xl md:text-3xl font-semibold">
+                      High-converting landing pages, built to perform
+                    </h3>
+
+                    {/* Paragraph */}
+                    <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                      Every page is custom-built for speed, structure, and conversion — not dragged out of a template library. You get production-ready pages that match your brand and move as fast as your campaigns do
+                    </p>
+
+                    {/* Testimonial */}
+                    <div className="border-t border-border pt-6 mt-6">
+                      <p className="text-muted-foreground italic text-base leading-relaxed">
+                        "Working with Troopod completely changed how fast we could launch new campaigns. What used to take weeks now takes hours"
+                      </p>
+                      <p className="text-sm text-muted-foreground mt-3 font-medium">
+                        — Alex Johnson, Head of Growth
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
         </section>
       </main>
