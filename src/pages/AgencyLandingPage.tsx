@@ -473,7 +473,7 @@ const AgencyLandingPage = () => {
         <section className="section-padding text-center">
           <div className="max-w-6xl mx-auto">
             <p className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed mb-4">
-              Send your brief. Go Live with your ideas today :)
+              Send your brief and Go Live with your ideas today :)
             </p>
             <p className="text-muted-foreground text-sm md:text-base mb-10">
               No contracts. No onboarding delays. Just fast execution.
