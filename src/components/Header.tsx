@@ -53,14 +53,14 @@ const Header = () => {
                   onClick={handleBrandClick}
                   className="block px-4 py-2.5 text-sm text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
-                  Brand
+                  Brands
                 </a>
                 <Link
                   to="/agency"
                   onClick={() => setOpen(false)}
                   className="block px-4 py-2.5 text-sm text-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
                 >
-                  Agency
+                  Agencies
                 </Link>
               </div>
             )}
