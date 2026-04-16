@@ -59,17 +59,50 @@ const productCards = [
 ];
 
 const ProductCardsSection = () => {
-  const [current, setCurrent] = useState(0);
   const total = productCards.length;
-  const prev = () => setCurrent((c) => ((c - 1) % total + total) % total);
-  const next = () => setCurrent((c) => (c + 1) % total);
+  const offset = total;
+  const [current, setCurrent] = useState(offset);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+
+  const prev = () => setCurrent((c) => c - 1);
+  const next = () => setCurrent((c) => c + 1);
+
+  useEffect(() => {
+    if (current === offset - 1) {
+      const timer = window.setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrent(offset + total - 1);
+      }, 500);
+
+      return () => window.clearTimeout(timer);
+    }
+
+    if (current === offset + total) {
+      const timer = window.setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrent(offset);
+      }, 500);
+
+      return () => window.clearTimeout(timer);
+    }
+  }, [current, offset, total]);
+
+  useEffect(() => {
+    if (!isTransitioning) {
+      const frame = window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+      });
+
+      return () => window.cancelAnimationFrame(frame);
+    }
+  }, [isTransitioning]);
 
   const items = [...productCards, ...productCards, ...productCards];
-  const offset = total;
 
   const getTransform = () => {
-    const idx = current + offset;
-    return `translateX(calc(50% - ${idx * (540 + 24) + 270}px))`;
+    return `translateX(calc(50% - ${current * (540 + 24) + 270}px))`;
   };
 
   const getRealIndex = (i: number) => ((i % total) + total) % total;
@@ -87,11 +120,11 @@ const ProductCardsSection = () => {
 
       <div className="relative overflow-visible">
         <div
-          className="flex transition-transform duration-500 ease-in-out gap-6"
+          className={`flex gap-6 ${isTransitioning ? "transition-transform duration-500 ease-in-out" : ""}`}
           style={{ transform: getTransform() }}
         >
           {items.map((card, i) => {
-            const isActive = getRealIndex(i - offset) === getRealIndex(current);
+            const isActive = i === current;
             return (
               <div
                 key={i}
@@ -127,7 +160,7 @@ const ProductCardsSection = () => {
         </button>
         <div className="flex gap-2">
           {productCards.map((_, i) => (
-            <button key={i} onClick={() => setCurrent(i)} className={`w-2 h-2 rounded-full transition-colors ${getRealIndex(current) === i ? "bg-primary" : "bg-border"}`} />
+            <button key={i} onClick={() => { setIsTransitioning(true); setCurrent(offset + i); }} className={`w-2 h-2 rounded-full transition-colors ${getRealIndex(current - offset) === i ? "bg-primary" : "bg-border"}`} />
           ))}
         </div>
         <button onClick={next} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Next">
