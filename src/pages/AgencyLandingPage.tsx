@@ -293,32 +293,33 @@ const AgencyLandingPage = () => {
                 const dotTop = 'calc(2.5rem + 1rem + 0.5rem - 1px)';
                 return (
                   <div className="grid grid-cols-3 relative">
-                    {/* Track line from dot 01 center to dot 03 center */}
-                    <div className="absolute h-[2px] bg-border/30 rounded-full" style={{ top: dotTop, left: 'calc(100% / 6)', right: 'calc(100% / 6)' }} />
-                    {/* Animated glow line */}
-                    <div
-                      className="absolute h-[2px] rounded-full origin-left"
-                      style={{
-                        top: dotTop,
-                        left: 'calc(100% / 6)',
-                        right: 'calc(100% / 6)',
-                        background: 'linear-gradient(90deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
-                        animation: 'timeline-line-grow 3s ease-out infinite',
-                        boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
-                      }}
-                    />
-                    {/* Traveling glow */}
-                    <div
-                      className="absolute w-3 h-3 rounded-full"
-                      style={{
-                        top: `calc(${dotTop} - 5px)`,
-                        left: 'calc(100% / 6 - 6px)',
-                        background: 'hsl(262 83% 58%)',
-                        animation: 'timeline-travel 3s ease-out infinite',
-                        boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
-                        zIndex: 20,
-                      }}
-                    />
+                    {/* Track container: spans exactly from dot 01 center to dot 03 center */}
+                    <div className="absolute" style={{ top: dotTop, left: 'calc(100% / 6)', right: 'calc(100% / 6)', height: '2px' }}>
+                      {/* Static track */}
+                      <div className="absolute inset-0 bg-border/30 rounded-full" />
+                      {/* Animated glow line */}
+                      <div
+                        className="absolute inset-0 rounded-full origin-left"
+                        style={{
+                          background: 'linear-gradient(90deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
+                          animation: 'timeline-line-grow 3s ease-out infinite',
+                          boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
+                        }}
+                      />
+                      {/* Traveling glow dot — moves within this container so 0% = dot 01, 100% = dot 03 */}
+                      <div
+                        className="absolute rounded-full"
+                        style={{
+                          width: 12,
+                          height: 12,
+                          top: -5,
+                          animation: 'timeline-travel 3s ease-out infinite',
+                          background: 'hsl(262 83% 58%)',
+                          boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
+                          zIndex: 20,
+                        }}
+                      />
+                    </div>
                     {steps.map((item, i) => (
                       <div key={item.step} className="relative flex flex-col items-center text-center px-4">
                         <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">{item.step}</p>
