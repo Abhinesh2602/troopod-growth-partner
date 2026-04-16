@@ -450,7 +450,7 @@ const AgencyLandingPage = () => {
                 { metric: "24h", label: "From design to live" },
                 { metric: "2X", label: "Higher margins" },
                 { metric: "5–7X", label: "More output per team" },
-                { metric: "3K+ USD", label: "Extra revenue per client" },
+                { metric: "$3k+", label: "Extra revenue per client" },
               ].map((item) => (
                 <div
                   key={item.metric}
