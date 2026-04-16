@@ -147,8 +147,9 @@ const AgencyLandingPage = () => {
         {/* Section 01 — Hero */}
         <section className="section-padding text-center">
           <div className="max-w-6xl mx-auto flex flex-col items-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(0 0% 95%) 0%, hsl(262 83% 58%) 100%)' }}>
-              From design to live in 24 hours
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              From design to live in{" "}
+              <span className="text-primary">24 hours</span>
             </h1>
 
             <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl max-w-3xl mt-6">
