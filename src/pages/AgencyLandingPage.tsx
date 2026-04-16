@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "@/components/Header";
-import { UserX, Puzzle, Clock, Layers, Award, Zap, ArrowLeft, ArrowRight } from "lucide-react";
+import { UserX, Puzzle, Clock, Layers, Award, Send, ArrowLeft, ArrowRight } from "lucide-react";
 
 const trustLogos = [
   "Martin Monroe",
@@ -237,18 +237,18 @@ const AgencyLandingPage = () => {
               {[
                 {
                   icon: Layers,
-                  title: "End-to-end Ownership",
-                  description: "From strategy to deployment\nto optimization",
+                  title: "Fully Managed Execution",
+                  description: "Design to live, fully handled",
                 },
                 {
                   icon: Award,
-                  title: "Proven Performance",
-                  description: "Positive results across 100+ consumer brands",
+                  title: "Proven at Scale",
+                  description: "Battle-tested across 100+ brands",
                 },
                 {
-                  icon: Zap,
-                  title: "AI-driven Execution",
-                  description: "10X faster execution without compromising quality",
+                  icon: Send,
+                  title: "Zero Team Effort",
+                  description: "Share the design. We ship it",
                 },
               ].map((usp) => (
                 <div
@@ -256,7 +256,7 @@ const AgencyLandingPage = () => {
                   className="bg-card border border-border rounded-lg p-10 md:p-12 text-center"
                 >
                   <div className="flex justify-center mb-6">
-                    <usp.icon className="w-10 h-10 text-primary" />
+                    <usp.icon className="w-[60px] h-[60px] text-primary" />
                   </div>
                   <h3 className="text-lg font-medium mb-2 whitespace-nowrap">{usp.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
