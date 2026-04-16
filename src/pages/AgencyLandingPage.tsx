@@ -286,7 +286,7 @@ const AgencyLandingPage = () => {
             <div className="mt-16 md:mt-20">
               <div className="grid grid-cols-3 relative">
                 {/* Line connecting dot centers: from center of first col to center of last col */}
-                <div className="absolute h-[2px] bg-border" style={{ top: '0.5rem', left: 'calc(100% / 6)', right: 'calc(100% / 6)' }} />
+                <div className="absolute h-[2px] bg-border" style={{ top: 'calc(2.25rem + 1rem + 0.5rem)', left: 'calc(100% / 6)', right: 'calc(100% / 6)' }} />
                 {[
                   { step: "01", title: "Share your design or idea", description: "Figma, HTML, or just a brief" },
                   { step: "02", title: "Troopod handles the build + QA", description: "Structure, integrations, everything production-ready" },
