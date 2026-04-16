@@ -51,10 +51,10 @@ const productCards = [
   },
   {
     image: "Project Delta",
-    title: "Scalable page systems for growing brands",
-    description: "Whether you need 5 pages or 50, the same quality and speed applies — built to scale with your growth",
-    quote: "Troopod became an extension of our team, not just another vendor",
-    author: "Priya Sharma, CMO",
+    title: "Manus → Dev in 24 hours",
+    description: "From Manus to a fully functional page, ready to go live",
+    quote: "We asked if they could take a design from Manus to live, and they delivered it quickly, without any friction. It shows the adaptability of the team.",
+    author: "Eric Vaughn, Martin Monroe",
   },
 ];
 
