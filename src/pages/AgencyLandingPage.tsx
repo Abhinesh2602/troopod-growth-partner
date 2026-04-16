@@ -1,12 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
-import { UserX, AlertTriangle, Clock, Layers, TrendingUp, Sparkles, ArrowLeft, ArrowRight } from "lucide-react";
+import { UserX, AlertTriangle, Clock, Layers, TrendingUp, Sparkles, ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import martinMonroeLogo from "@/assets/brands/martinmonroe_cover.png";
+import obviLogo from "@/assets/brands/obvi.png";
+import essorLogo from "@/assets/brands/ESSOR_Logo-320x83-black.webp";
+import primalWebpage from "@/assets/webpages/8primal-webpage.png";
+import anomalyWebpage from "@/assets/webpages/anomaly-webpage-2.png";
+import flexproWebpage from "@/assets/webpages/flexpro-meals-webpage.png";
+import wondercowWebpage from "@/assets/webpages/wondercow-webpage.png";
+import ericAvatar from "@/assets/clients/martin-monroe.png";
+import ronakAvatar from "@/assets/clients/ronak-shah.png";
 
 const trustLogos = [
-  "Martin Monroe",
-  "NJRAMs",
-  "Obvi",
-  "Essor",
+  { name: "Martin Monroe", src: martinMonroeLogo, type: "image" as const, scale: "scale-[2.2]" },
+  { name: "NJRAMs", src: null, type: "njrams" as const },
+  { name: "Obvi", src: obviLogo, type: "image" as const },
+  { name: "Essor", src: essorLogo, type: "image" as const },
 ];
 
 const problems = [
@@ -29,32 +38,40 @@ const problems = [
 
 const productCards = [
   {
-    image: "Project Alpha",
-    title: "Idea → Design in 24 hours",
-    description: "From brief to final landing page design, with minimal to-and-fros",
-    quote: "We shared minimal context, and Troopod delivered a complete landing page design within 24 hours, with almost no back-and-forth. The speed was impressive.",
-    author: "Josh Pasour, NJRAMS",
-  },
-  {
-    image: "Project Beta",
-    title: "Figma → Full website live in 2 weeks",
-    description: "From design to complete website launch without any delays",
+    image: anomalyWebpage,
+    imageAlt: "Anomaly landing page",
+    domain: "tryanomaly.com",
+    title: "Design → Dev in 24 hours",
+    description: "From design to a fully developed landing page, live in a single day",
     quote: "I haven't seen this kind of speed to go live before. Highly recommend for teams looking to launch quickly.",
-    author: "Eric Vaughn, Martin Monroe",
-  },
-  {
-    image: "Project Gamma",
-    title: "Idea → Dev in 48 hours",
-    description: "From concept to a fully functional page, ready to launch",
-    quote: "We went from idea to a fully functional page in under 48 hours, something that would normally take weeks, if not months.",
     author: "Ronak Shah, Obvi",
+    avatar: ronakAvatar,
   },
   {
-    image: "Project Delta",
-    title: "Manus → Dev in 24 hours",
-    description: "From Manus to a fully functional page, ready to go live",
+    image: flexproWebpage,
+    imageAlt: "FlexPro Meals landing page",
+    domain: "flexpromeals.com",
+    title: "Design → Dev in 24 hours",
+    description: "From design to a fully developed landing page, live in a single day",
+    quote: "We went from idea to a fully functional page in under 48 hours, something that would normally take weeks, if not months.",
+    author: "Eric Martin Vaughn, Martin Monroe",
+    avatar: ericAvatar,
+  },
+  {
+    image: primalWebpage,
+    imageAlt: "8Primal landing page",
+    domain: "8primal.com",
+    title: "Design → Complete theme in 12 weeks",
+    description: "From design to complete Shopify theme development, fully live and ready to scale",
+  },
+  {
+    image: wondercowWebpage,
+    imageAlt: "Wondercow landing page",
+    domain: "wondercow.com",
+    title: "Design → Dev in 24 hours",
+    description: "From design to a fully developed landing page, live in a single day",
     quote: "We asked if they could take a design from Manus to live, and they delivered it quickly, without any friction. It shows the adaptability of the team.",
-    author: "Eric Vaughn, Martin Monroe",
+    author: "Josh Pasour, NJRAMS",
   },
 ];
 
@@ -72,8 +89,8 @@ const ProductCardsSection = () => {
     return () => window.removeEventListener('resize', check);
   }, []);
 
-  const prev = () => setCurrent((c) => c - 1);
-  const next = () => setCurrent((c) => c + 1);
+  const prev = () => setCurrent((c) => Math.max(c - 1, offset - 1));
+  const next = () => setCurrent((c) => Math.min(c + 1, offset + total));
 
   useEffect(() => {
     if (current === offset - 1) {
@@ -107,6 +124,32 @@ const ProductCardsSection = () => {
     }
   }, [isTransitioning]);
 
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const swiped = useRef(false);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    swiped.current = false;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX.current === null || touchStartY.current === null || swiped.current) return;
+    const dx = e.touches[0].clientX - touchStartX.current;
+    const dy = e.touches[0].clientY - touchStartY.current;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      swiped.current = true;
+      if (dx < 0) next();
+      else prev();
+    }
+  };
+
+  const handleTouchEnd = () => {
+    touchStartX.current = null;
+    touchStartY.current = null;
+  };
+
   const items = [...productCards, ...productCards, ...productCards];
 
   const cardWidth = isMobile ? 300 : 540;
@@ -118,8 +161,19 @@ const ProductCardsSection = () => {
 
   const getRealIndex = (i: number) => ((i % total) + total) % total;
 
+  const activeIndex = getRealIndex(current - offset);
+
   return (
-    <section className="section-padding">
+    <section className="section-padding overflow-x-clip relative" onTouchStart={handleTouchStart} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-1/4 bottom-0 -z-10"
+        style={{
+          background:
+            'radial-gradient(ellipse 55% 45% at 50% 55%, hsl(262 83% 58% / 0.14), transparent 70%)',
+        }}
+      />
+
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight mb-16 md:mb-20">
           How agencies{" "}
@@ -129,7 +183,7 @@ const ProductCardsSection = () => {
         </h2>
       </div>
 
-      <div className="relative overflow-visible">
+      <div className="relative">
         <div
           className={`flex gap-4 sm:gap-6 ${isTransitioning ? "transition-transform duration-500 ease-in-out" : ""}`}
           style={{ transform: getTransform() }}
@@ -139,24 +193,67 @@ const ProductCardsSection = () => {
             return (
               <div
                 key={i}
-                className="flex-shrink-0 transition-all duration-500"
+                className="flex-shrink-0"
                 style={{ width: cardWidth }}
               >
                 <div
-                  className={`bg-card border border-border rounded-2xl overflow-hidden transition-all duration-500 ${
-                    isActive ? "opacity-100 scale-100" : "opacity-40 scale-95"
+                  className={`bg-card rounded-2xl overflow-hidden ${isTransitioning ? "transition-all duration-500" : ""} ${
+                    isActive
+                      ? "opacity-100 scale-100 border border-primary/20 shadow-[0_30px_90px_-20px_hsl(262_83%_58%/0.35),0_0_0_1px_hsl(262_83%_58%/0.08)]"
+                      : "opacity-40 scale-95 border border-border"
                   }`}
                 >
-                  <div className="w-full aspect-[16/10] bg-secondary flex items-center justify-center">
-                    <span className="text-muted-foreground text-sm">{card.image}</span>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <h3 className="text-xl font-semibold text-primary">{card.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
-                    <div className="border-t border-border pt-4">
-                      <p className="text-muted-foreground italic text-sm leading-relaxed">"{card.quote}"</p>
-                      <p className="text-xs text-muted-foreground mt-2 font-medium">— {card.author}</p>
+                  <div className="w-full aspect-[16/10] bg-gradient-to-b from-secondary to-background overflow-hidden flex flex-col">
+                    <div className="flex items-center gap-1.5 px-4 py-3 border-b border-border/60 bg-background/40 backdrop-blur-sm flex-shrink-0">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
+                      <div className="flex-1 flex justify-center">
+                        <span className="text-[10px] sm:text-[11px] text-muted-foreground font-mono tracking-wide bg-secondary/70 px-3 py-0.5 rounded-md">
+                          {card.domain}
+                        </span>
+                      </div>
+                      <span className="w-10" />
                     </div>
+                    <div className="flex-1 overflow-hidden">
+                      <img
+                        src={card.image}
+                        alt={card.imageAlt}
+                        className="w-full h-full object-cover object-top"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                  <div className="p-6 sm:p-7 space-y-5">
+                    <div>
+                      <h3 className="text-xl font-semibold text-primary leading-snug">{card.title}</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed mt-2">{card.description}</p>
+                    </div>
+                    {card.quote && card.author && (
+                    <div className="border-t border-border/60 pt-5 flex flex-col sm:flex-row gap-4 sm:items-start">
+                      <div className="flex gap-3 flex-1 min-w-0">
+                        <Quote
+                          className="w-5 h-5 text-primary/60 flex-shrink-0 mt-0.5"
+                          style={{ transform: 'scaleX(-1)' }}
+                          aria-hidden
+                        />
+                        <p className="text-foreground/85 italic text-sm leading-relaxed">{card.quote}</p>
+                      </div>
+                      <div className="flex sm:flex-col items-center gap-2 sm:gap-2 flex-shrink-0">
+                        {card.avatar ? (
+                          <img src={card.avatar} alt={card.author.split(", ")[0]} className="w-10 h-10 rounded-full object-cover border border-primary/20" />
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/40 to-primary/10 border border-primary/20 flex items-center justify-center">
+                            <span className="text-sm font-semibold text-primary/80">{card.author.split(" ").map(w => w[0]).slice(0, 2).join("")}</span>
+                          </div>
+                        )}
+                        <div className="sm:text-center">
+                          <p className="text-xs font-medium text-foreground/80 whitespace-nowrap">{card.author.split(", ")[0]}</p>
+                          <p className="text-[10px] text-muted-foreground whitespace-nowrap">{card.author.split(", ")[1]}</p>
+                        </div>
+                      </div>
+                    </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -165,16 +262,34 @@ const ProductCardsSection = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-4 mt-8">
-        <button onClick={prev} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Previous">
+      <div className="flex items-center justify-center gap-5 sm:gap-6 mt-10">
+        <button
+          onClick={prev}
+          className="w-11 h-11 rounded-full border border-border/80 bg-card/40 backdrop-blur-sm flex items-center justify-center hover:border-primary/50 hover:bg-primary/5 hover:text-primary transition-all"
+          aria-label="Previous"
+        >
           <ArrowLeft className="w-5 h-5" />
         </button>
-        <div className="flex gap-2">
-          {productCards.map((_, i) => (
-            <button key={i} onClick={() => { setIsTransitioning(true); setCurrent(offset + i); }} className={`w-2 h-2 rounded-full transition-colors ${getRealIndex(current - offset) === i ? "bg-primary" : "bg-border"}`} />
-          ))}
+        <div className="flex items-center gap-2">
+          {productCards.map((_, i) => {
+            const isActiveDot = activeIndex === i;
+            return (
+              <button
+                key={i}
+                onClick={() => { setIsTransitioning(true); setCurrent(offset + i); }}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  isActiveDot ? "w-8 bg-primary" : "w-1.5 bg-border hover:bg-muted-foreground/60"
+                }`}
+              />
+            );
+          })}
         </div>
-        <button onClick={next} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Next">
+        <button
+          onClick={next}
+          className="w-11 h-11 rounded-full border border-border/80 bg-card/40 backdrop-blur-sm flex items-center justify-center hover:border-primary/50 hover:bg-primary/5 hover:text-primary transition-all"
+          aria-label="Next"
+        >
           <ArrowRight className="w-5 h-5" />
         </button>
       </div>
@@ -218,13 +333,23 @@ const AgencyLandingPage = () => {
               <p className="text-sm font-medium text-muted-foreground tracking-wide mb-6">
                 Used by performance teams behind leading DTC brands
               </p>
-              <div className="flex flex-wrap justify-center gap-6">
-                {trustLogos.map((name) => (
-                  <div
-                    key={name}
-                    className="h-12 w-32 rounded-lg bg-secondary flex items-center justify-center"
-                  >
-                    <span className="text-xs text-muted-foreground font-medium">{name}</span>
+              <div className="flex flex-wrap justify-center gap-8">
+                {trustLogos.map((logo) => (
+                  <div key={logo.name} className="relative">
+                    <div className="h-20 w-44 rounded-lg bg-white flex items-center justify-center overflow-hidden p-4">
+                      {logo.type === "image" && logo.src ? (
+                        <img
+                          src={logo.src}
+                          alt={logo.name}
+                          className={`max-w-full object-contain max-h-full ${logo.scale || ""}`}
+                        />
+                      ) : (
+                        <span className="font-mono font-bold tracking-wider flex items-baseline gap-0.5">
+                          <span className="text-[#1a1a2e]/60 text-xs tracking-[3px]">NJ</span>
+                          <span className="text-[#1a1a2e] text-2xl">RAMS</span>
+                        </span>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
