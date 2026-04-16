@@ -347,11 +347,10 @@ const AgencyLandingPage = () => {
         <section className="section-padding">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight">
-              There's no true{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
-                full-stack website growth partner
+                TrooLaunch
               </span>{" "}
-              as of today
+              is the fastest, most reliable way to go live
             </h2>
 
             <div className="mt-16 md:mt-20 overflow-x-auto">
