@@ -367,6 +367,37 @@ const AgencyLandingPage = () => {
             {/* Section 06 — Product Card */}
             <div className="w-full h-px bg-border" />
             <ProductCardsSection />
+
+            {/* Section 07 — Metrics */}
+            <div className="w-full h-px bg-border" />
+            <section className="section-padding w-full">
+              <div className="max-w-6xl mx-auto">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight mb-16 md:mb-20">
+                  Clear, measurable{" "}
+                  <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
+                    impact on your agency
+                  </span>
+                </h2>
+
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  {[
+                    { metric: "24h", label: "Average turnaround from design to live" },
+                    { metric: "100+", label: "Pages built for consumer brands" },
+                    { metric: "3X", label: "Faster than traditional dev teams" },
+                    { metric: "98%", label: "Client satisfaction across projects" },
+                  ].map((item) => (
+                    <div
+                      key={item.metric}
+                      className="bg-card border border-border rounded-lg p-8 md:p-10 text-center"
+                    >
+                      <p className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-3">{item.metric}</p>
+                      <p className="text-muted-foreground text-sm leading-relaxed">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+            <ProductCardsSection />
           </div>
         </section>
       </main>
