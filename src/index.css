@@ -76,30 +76,29 @@
 @keyframes timeline-travel {
   0% { left: 0%; opacity: 0; }
   5% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
+  85% { opacity: 1; left: calc(100% - 12px); }
+  90%, 100% { opacity: 0; left: calc(100% - 12px); }
 }
 
 @keyframes timeline-line-grow {
   0% { transform: scaleX(0); }
-  80% { transform: scaleX(1); }
-  100% { transform: scaleX(1); }
+  85%, 100% { transform: scaleX(1); }
 }
 
-@keyframes dot-pulse-first {
-  0%, 5% { box-shadow: 0 0 0 hsl(262 83% 58% / 0); }
-  15%, 35% { box-shadow: 0 0 14px hsl(262 83% 58% / 0.8); }
-  50%, 100% { box-shadow: 0 0 6px hsl(262 83% 58% / 0.3); }
+@keyframes dot-glow-0 {
+  0%, 5% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
+  12%, 40% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
+  60%, 100% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
 }
 
-@keyframes dot-pulse-mid {
-  0%, 35% { box-shadow: 0 0 0 hsl(262 83% 58% / 0); }
-  50%, 65% { box-shadow: 0 0 14px hsl(262 83% 58% / 0.8); }
-  80%, 100% { box-shadow: 0 0 6px hsl(262 83% 58% / 0.3); }
+@keyframes dot-glow-1 {
+  0%, 35% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
+  45%, 65% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
+  80%, 100% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
 }
 
-@keyframes dot-pulse-last {
-  0%, 65% { box-shadow: 0 0 0 hsl(262 83% 58% / 0); }
-  80%, 95% { box-shadow: 0 0 14px hsl(262 83% 58% / 0.8); }
-  100% { box-shadow: 0 0 6px hsl(262 83% 58% / 0.3); }
+@keyframes dot-glow-2 {
+  0%, 65% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
+  80%, 92% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
+  100% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
 }

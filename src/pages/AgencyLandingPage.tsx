@@ -284,50 +284,59 @@ const AgencyLandingPage = () => {
             </h2>
 
             <div className="mt-16 md:mt-20">
-              <div className="grid grid-cols-3 relative">
-                {/* Static track line */}
-                <div className="absolute h-[2px] bg-border/40" style={{ top: 'calc(2.5rem + 1rem + 0.5rem - 1px)', left: 'calc(100% / 6)', right: 'calc(100% / 6)' }} />
-                {/* Animated glowing line */}
-                <div
-                  className="absolute h-[2px] bg-primary origin-left"
-                  style={{
-                    top: 'calc(2.5rem + 1rem + 0.5rem - 1px)',
-                    left: 'calc(100% / 6)',
-                    right: 'calc(100% / 6)',
-                    animation: 'timeline-line-grow 3s ease-out infinite',
-                    boxShadow: '0 0 8px hsl(262 83% 58% / 0.5)',
-                  }}
-                />
-                {/* Traveling glow dot */}
-                <div
-                  className="absolute w-3 h-3 rounded-full bg-primary"
-                  style={{
-                    top: 'calc(2.5rem + 1rem + 0.5rem - 7px)',
-                    left: 'calc(100% / 6)',
-                    animation: 'timeline-travel 3s ease-out infinite',
-                    boxShadow: '0 0 12px hsl(262 83% 58% / 0.8)',
-                    zIndex: 20,
-                  }}
-                />
-                {[
-                  { step: "01", title: "Share your design or idea", description: "Figma, HTML, or just a brief", dotAnim: "dot-pulse-first 3s ease-out infinite" },
-                  { step: "02", title: "Troopod handles the build + QA", description: "Structure, integrations, everything production-ready", dotAnim: "dot-pulse-mid 3s ease-out infinite" },
-                  { step: "03", title: "Live in 24 hours", description: "Ready to launch with your campaigns", dotAnim: "dot-pulse-last 3s ease-out infinite" },
-                ].map((item) => (
-                  <div key={item.step} className="relative flex flex-col items-center text-center px-4">
-                    <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">{item.step}</p>
+              {(() => {
+                const steps = [
+                  { step: "01", title: "Share your design or idea", description: "Figma, HTML, or just a brief" },
+                  { step: "02", title: "Troopod handles the build + QA", description: "Structure, integrations, everything production-ready" },
+                  { step: "03", title: "Live in 24 hours", description: "Ready to launch with your campaigns" },
+                ];
+                const dotTop = 'calc(2.5rem + 1rem + 0.5rem - 1px)';
+                return (
+                  <div className="grid grid-cols-3 relative">
+                    {/* Track line from dot 01 center to dot 03 center */}
+                    <div className="absolute h-[2px] bg-border/30 rounded-full" style={{ top: dotTop, left: 'calc(100% / 6)', right: 'calc(100% / 6)' }} />
+                    {/* Animated glow line */}
                     <div
-                      className="w-4 h-4 rounded-full bg-primary relative z-10 mb-6"
+                      className="absolute h-[2px] rounded-full origin-left"
                       style={{
-                        animation: item.dotAnim,
-                        boxShadow: '0 0 10px hsl(262 83% 58% / 0.6)',
+                        top: dotTop,
+                        left: 'calc(100% / 6)',
+                        right: 'calc(100% / 6)',
+                        background: 'linear-gradient(90deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
+                        animation: 'timeline-line-grow 3s ease-out infinite',
+                        boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
                       }}
                     />
-                    <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                    {/* Traveling glow */}
+                    <div
+                      className="absolute w-3 h-3 rounded-full"
+                      style={{
+                        top: `calc(${dotTop} - 5px)`,
+                        left: 'calc(100% / 6 - 6px)',
+                        background: 'hsl(262 83% 58%)',
+                        animation: 'timeline-travel 3s ease-out infinite',
+                        boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
+                        zIndex: 20,
+                      }}
+                    />
+                    {steps.map((item, i) => (
+                      <div key={item.step} className="relative flex flex-col items-center text-center px-4">
+                        <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">{item.step}</p>
+                        <div
+                          className="w-4 h-4 rounded-full relative z-10 mb-6"
+                          style={{
+                            background: 'hsl(240 4% 18%)',
+                            border: '2px solid hsl(240 4% 25%)',
+                            animation: `dot-glow-${i} 3s ease-out infinite`,
+                          }}
+                        />
+                        <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                );
+              })()}
             </div>
           </div>
         </section>
