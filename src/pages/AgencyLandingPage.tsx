@@ -70,11 +70,11 @@ const ProductCardsSection = () => {
       </div>
 
       {/* Carousel with peek */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-visible">
         <div
-          className="flex transition-transform duration-500 ease-in-out"
+          className="flex transition-transform duration-500 ease-in-out gap-6"
           style={{
-            transform: `translateX(calc(50% - ${current * 540 + 270}px))`,
+            transform: `translateX(calc(50% - ${current * (540 + 24) + 270}px))`,
           }}
         >
           {productCards.map((card, i) => (
