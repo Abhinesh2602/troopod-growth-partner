@@ -472,15 +472,18 @@ const AgencyLandingPage = () => {
         <div className="w-full h-px bg-border" />
         <section className="section-padding text-center">
           <div className="max-w-6xl mx-auto">
-            <p className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed mb-10">
-              Send us your design and get your first page live — no contracts, no onboarding delays
+            <p className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed mb-4">
+              Send your brief. Go Live with your ideas today
+            </p>
+            <p className="text-muted-foreground text-sm md:text-base mb-10">
+              No contracts. No onboarding delays. Just fast execution.
             </p>
 
             <a
               href="mailto:hello@troopod.io"
               className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-8 py-4 text-base font-medium hover:opacity-90 transition-opacity"
             >
-              Go Live in next 24 hrs
+              Go Live Today
             </a>
           </div>
         </section>
