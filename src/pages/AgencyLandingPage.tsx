@@ -63,6 +63,14 @@ const ProductCardsSection = () => {
   const offset = total;
   const [current, setCurrent] = useState(offset);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const prev = () => setCurrent((c) => c - 1);
   const next = () => setCurrent((c) => c + 1);
@@ -101,8 +109,11 @@ const ProductCardsSection = () => {
 
   const items = [...productCards, ...productCards, ...productCards];
 
+  const cardWidth = isMobile ? 300 : 540;
+  const cardGap = isMobile ? 16 : 24;
+
   const getTransform = () => {
-    return `translateX(calc(50% - ${current * (540 + 24) + 270}px))`;
+    return `translateX(calc(50% - ${current * (cardWidth + cardGap) + cardWidth / 2}px))`;
   };
 
   const getRealIndex = (i: number) => ((i % total) + total) % total;
@@ -120,7 +131,7 @@ const ProductCardsSection = () => {
 
       <div className="relative overflow-visible">
         <div
-          className={`flex gap-6 ${isTransitioning ? "transition-transform duration-500 ease-in-out" : ""}`}
+          className={`flex gap-4 sm:gap-6 ${isTransitioning ? "transition-transform duration-500 ease-in-out" : ""}`}
           style={{ transform: getTransform() }}
         >
           {items.map((card, i) => {
@@ -129,7 +140,7 @@ const ProductCardsSection = () => {
               <div
                 key={i}
                 className="flex-shrink-0 transition-all duration-500"
-                style={{ width: 540 }}
+                style={{ width: cardWidth }}
               >
                 <div
                   className={`bg-card border border-border rounded-2xl overflow-hidden transition-all duration-500 ${
@@ -325,50 +336,71 @@ const AgencyLandingPage = () => {
                 ];
                 const dotTop = 'calc(2.5rem + 1rem + 0.5rem - 1px)';
                 return (
-                  <div className="grid grid-cols-3 relative">
-                    {/* Track container: spans exactly from dot 01 center to dot 03 center */}
-                    <div className="absolute" style={{ top: dotTop, left: 'calc(100% / 6)', right: 'calc(100% / 6)', height: '2px' }}>
-                      {/* Static track */}
-                      <div className="absolute inset-0 bg-border/30 rounded-full" />
-                      {/* Animated glow line */}
-                      <div
-                        className="absolute inset-0 rounded-full origin-left"
-                        style={{
-                          background: 'linear-gradient(90deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
-                          animation: 'timeline-line-grow 4.5s ease-out infinite',
-                          boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
-                        }}
-                      />
-                      {/* Traveling glow dot — moves within this container so 0% = dot 01, 100% = dot 03 */}
-                      <div
-                        className="absolute rounded-full"
-                        style={{
-                          width: 12,
-                          height: 12,
-                          top: -5,
-                          animation: 'timeline-travel 4.5s ease-out infinite',
-                          background: 'hsl(262 83% 58%)',
-                          boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
-                          zIndex: 20,
-                        }}
-                      />
-                    </div>
-                    {steps.map((item, i) => (
-                      <div key={item.step} className="relative flex flex-col items-center text-center px-4">
-                        <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">{item.step}</p>
+                  <>
+                    {/* Desktop: horizontal */}
+                    <div className="hidden md:grid grid-cols-3 relative">
+                      <div className="absolute" style={{ top: dotTop, left: 'calc(100% / 6)', right: 'calc(100% / 6)', height: '2px' }}>
+                        <div className="absolute inset-0 bg-border/30 rounded-full" />
                         <div
-                          className="w-4 h-4 rounded-full relative z-10 mb-6"
+                          className="absolute inset-0 rounded-full origin-left"
                           style={{
-                            background: 'hsl(240 4% 18%)',
-                            border: '2px solid hsl(240 4% 25%)',
-                            animation: `dot-glow-${i} 4.5s ease-out infinite`,
+                            background: 'linear-gradient(90deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
+                            animation: 'timeline-line-grow 4.5s ease-out infinite',
+                            boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
                           }}
                         />
-                        <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                        <div
+                          className="absolute rounded-full"
+                          style={{
+                            width: 12,
+                            height: 12,
+                            top: -5,
+                            animation: 'timeline-travel 4.5s ease-out infinite',
+                            background: 'hsl(262 83% 58%)',
+                            boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
+                            zIndex: 20,
+                          }}
+                        />
                       </div>
-                    ))}
-                  </div>
+                      {steps.map((item, i) => (
+                        <div key={item.step} className="relative flex flex-col items-center text-center px-4">
+                          <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">{item.step}</p>
+                          <div
+                            className="w-4 h-4 rounded-full relative z-10 mb-6"
+                            style={{
+                              background: 'hsl(240 4% 18%)',
+                              border: '2px solid hsl(240 4% 25%)',
+                              animation: `dot-glow-${i} 4.5s ease-out infinite`,
+                            }}
+                          />
+                          <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
+                          <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Mobile: vertical */}
+                    <div className="md:hidden flex flex-col gap-8">
+                      {steps.map((item) => (
+                        <div key={item.step} className="flex items-start gap-5">
+                          <div className="flex flex-col items-center flex-shrink-0">
+                            <p className="text-2xl font-bold text-foreground tracking-tight">{item.step}</p>
+                            <div
+                              className="w-3 h-3 rounded-full mt-3"
+                              style={{
+                                background: 'hsl(262 83% 58%)',
+                                boxShadow: '0 0 12px hsl(262 83% 58% / 0.6)',
+                              }}
+                            />
+                          </div>
+                          <div className="pt-1">
+                            <h3 className="text-base font-semibold mb-1">{item.title}</h3>
+                            <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
                 );
               })()}
             </div>
@@ -387,7 +419,8 @@ const AgencyLandingPage = () => {
               way to go live
             </h2>
 
-            <div className="mt-16 md:mt-20 overflow-x-auto">
+            {/* Desktop table */}
+            <div className="mt-16 md:mt-20 hidden md:block overflow-x-auto">
               <table className="w-full border-collapse table-fixed" style={{ fontSize: '1.06rem' }}>
                 <colgroup>
                   <col className="w-[18%]" />
@@ -422,6 +455,25 @@ const AgencyLandingPage = () => {
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            {/* Mobile cards */}
+            <div className="mt-12 md:hidden space-y-4">
+              {[
+                { label: "Ownership", others: "Competing priorities · Low accountability · No ownership", troo: "Fully managed" },
+                { label: "Speed", others: "Limited bandwidth · Unpredictable · Fast for drafts only", troo: "Live in 24 hrs" },
+                { label: "Execution Flow", others: "Queue-based · Back-and-forth · Breaks before production", troo: "Structured, fast execution" },
+                { label: "Scalability", others: "Bottlenecks · Hard to scale · Broken workflow", troo: "Built for high volume" },
+                { label: "Outcome", others: "Delayed launches · Missed timelines · Never goes live", troo: "Launch-ready" },
+              ].map((row) => (
+                <div key={row.label} className="bg-card border border-border rounded-lg p-5">
+                  <p className="font-semibold text-foreground mb-3">{row.label}</p>
+                  <p className="text-muted-foreground text-xs leading-relaxed mb-3">{row.others}</p>
+                  <div className="border-t border-border pt-3">
+                    <p className="text-primary font-semibold text-sm">TrooLaunch: {row.troo}</p>
+                  </div>
+                </div>
+              ))}
             </div>
 
             <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
