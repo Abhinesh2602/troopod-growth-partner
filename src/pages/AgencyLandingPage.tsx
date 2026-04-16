@@ -64,6 +64,9 @@ const productCards = [
     domain: "8primal.com",
     title: "Figma → Full website live in 2 weeks",
     description: "From design to complete website launch without any delays",
+    quote: "I haven't seen this kind of speed to go live before. Highly recommend for teams looking to launch quickly.",
+    author: "Eric Vaughn, Martin Monroe",
+    avatar: ericAvatar,
   },
   {
     image: wondercowWebpage,
@@ -587,7 +590,7 @@ const AgencyLandingPage = () => {
                         style={{
                           left: 15,
                           top: 16,
-                          bottom: 16,
+                          bottom: 67,
                           width: 2,
                         }}
                       >
