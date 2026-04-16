@@ -293,8 +293,8 @@ const AgencyLandingPage = () => {
                   { step: "03", title: "Live in 24 hours", description: "Ready to launch with your campaigns" },
                 ].map((item) => (
                   <div key={item.step} className="relative flex flex-col items-center text-center px-4">
-                    <div className="w-4 h-4 rounded-full bg-primary relative z-10" />
-                    <p className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-foreground tracking-tight">{item.step}</p>
+                    <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">{item.step}</p>
+                    <div className="w-4 h-4 rounded-full bg-primary relative z-10 mb-6" />
                     <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                   </div>
