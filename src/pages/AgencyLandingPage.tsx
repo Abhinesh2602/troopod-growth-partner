@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import { UserX, Bot, Handshake, Layers, Award, Zap, ArrowLeft, ArrowRight } from "lucide-react";
 
