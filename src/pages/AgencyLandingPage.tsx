@@ -30,10 +30,10 @@ const problems = [
 const productCards = [
   {
     image: "Project Alpha",
-    title: "High-converting landing pages, built to perform",
-    description: "Every page is custom-built for speed, structure, and conversion — not dragged out of a template library",
-    quote: "Working with Troopod completely changed how fast we could launch new campaigns",
-    author: "Alex Johnson, Head of Growth",
+    title: "Idea → Design in 24 hours",
+    description: "From brief to final landing page design, with minimal to-and-fros",
+    quote: "We shared minimal context, and Troopod delivered a complete landing page design within 24 hours, with almost no back-and-forth. The speed was impressive.",
+    author: "Josh Pasour, NJRAMS",
   },
   {
     image: "Project Beta",
