@@ -347,10 +347,11 @@ const AgencyLandingPage = () => {
         <section className="section-padding">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight">
+              TrooLaunch is the{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
-                TrooLaunch
+                fastest, easiest, and most reliable
               </span>{" "}
-              is the fastest, easiest, and most reliable way to go live
+              way to go live
             </h2>
 
             <div className="mt-16 md:mt-20 overflow-x-auto">
