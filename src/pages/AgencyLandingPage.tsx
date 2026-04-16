@@ -447,10 +447,10 @@ const AgencyLandingPage = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { metric: "24h", label: "Average turnaround from design to live" },
-                { metric: "100+", label: "Pages built for consumer brands" },
-                { metric: "3X", label: "Faster than traditional dev teams" },
-                { metric: "98%", label: "Client satisfaction across projects" },
+                { metric: "24h", label: "From design to live" },
+                { metric: "2X", label: "Higher margins" },
+                { metric: "5–7X", label: "More output per team" },
+                { metric: "3K+ USD", label: "Extra revenue per client" },
               ].map((item) => (
                 <div
                   key={item.metric}
