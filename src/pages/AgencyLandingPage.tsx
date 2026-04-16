@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
-import { UserX, AlertTriangle, Clock, Layers, TrendingUp, Sparkles, ArrowLeft, ArrowRight, Quote } from "lucide-react";
+import { UserX, AlertTriangle, Clock, Layers, TrendingUp, Sparkles, ArrowLeft, ArrowRight, Quote, Check, X } from "lucide-react";
 import martinMonroeLogo from "@/assets/brands/martinmonroe_cover.png";
 import obviLogo from "@/assets/brands/obvi.png";
 import essorLogo from "@/assets/brands/ESSOR_Logo-320x83-black.webp";
@@ -10,6 +10,7 @@ import flexproWebpage from "@/assets/webpages/flexpro-meals-webpage.png";
 import wondercowWebpage from "@/assets/webpages/wondercow-webpage.png";
 import ericAvatar from "@/assets/clients/martin-monroe.png";
 import ronakAvatar from "@/assets/clients/ronak-shah.png";
+import joshAvatar from "@/assets/clients/josh-pasour.png";
 
 const trustLogos = [
   { name: "Martin Monroe", src: martinMonroeLogo, type: "image" as const, scale: "scale-[2.2] translate-y-1" },
@@ -41,9 +42,9 @@ const productCards = [
     image: anomalyWebpage,
     imageAlt: "Anomaly landing page",
     domain: "tryanomaly.com",
-    title: "Design → Dev in 24 hours",
-    description: "From design to a fully developed landing page, live in a single day",
-    quote: "I haven't seen this kind of speed to go live before. Highly recommend for teams looking to launch quickly.",
+    title: "Idea → Dev in 48 hours",
+    description: "From concept to a fully functional page, ready to launch",
+    quote: "We went from idea to a fully functional page in under 48 hours, something that would normally take weeks, if not months.",
     author: "Ronak Shah, Obvi",
     avatar: ronakAvatar,
   },
@@ -51,10 +52,10 @@ const productCards = [
     image: flexproWebpage,
     imageAlt: "FlexPro Meals landing page",
     domain: "flexpromeals.com",
-    title: "Design → Dev in 24 hours",
-    description: "From design to a fully developed landing page, live in a single day",
-    quote: "We went from idea to a fully functional page in under 48 hours, something that would normally take weeks, if not months.",
-    author: "Eric Martin Vaughn, Martin Monroe",
+    title: "Figma → Full website live in 2 weeks",
+    description: "From design to complete website launch without any delays",
+    quote: "I haven't seen this kind of speed to go live before. Highly recommend for teams looking to launch quickly.",
+    author: "Eric Vaughn, Martin Monroe",
     avatar: ericAvatar,
   },
   {
@@ -68,10 +69,11 @@ const productCards = [
     image: wondercowWebpage,
     imageAlt: "Wondercow landing page",
     domain: "wondercow.com",
-    title: "Design → Dev in 24 hours",
-    description: "From design to a fully developed landing page, live in a single day",
-    quote: "We asked if they could take a design from Manus to live, and they delivered it quickly, without any friction. It shows the adaptability of the team.",
+    title: "Idea → Design in 24 hours",
+    description: "From brief to final landing page design, with minimal to-and-fros",
+    quote: "We shared minimal context, and Troopod delivered a complete landing page design within 24 hours, with almost no back-and-forth. The speed was impressive.",
     author: "Josh Pasour, NJRAMS",
+    avatar: joshAvatar,
   },
 ];
 
@@ -297,11 +299,52 @@ const ProductCardsSection = () => {
   );
 };
 
+const AnimatedMetric = ({ prefix, value, suffix }: { prefix: string; value: number; suffix: string }) => {
+  const [display, setDisplay] = useState(0);
+  const ref = useRef<HTMLParagraphElement | null>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated.current) {
+            hasAnimated.current = true;
+            const duration = 1400;
+            const start = performance.now();
+            const tick = (now: number) => {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              setDisplay(Math.round(eased * value));
+              if (progress < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [value]);
+
+  return (
+    <p ref={ref} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-2 md:mb-3 tabular-nums">
+      {prefix}{display}{suffix}
+    </p>
+  );
+};
+
 const AgencyLandingPage = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-clip">
       <Header />
-      <main className="pt-16">
+      <main className="pt-16 overflow-x-clip">
         {/* Section 01 — Hero */}
         <section className="section-padding text-center">
           <div className="max-w-6xl mx-auto flex flex-col items-center">
@@ -333,25 +376,27 @@ const AgencyLandingPage = () => {
               <p className="text-sm font-medium text-muted-foreground tracking-wide mb-6">
                 Used by performance teams behind leading DTC brands
               </p>
-              <div className="flex flex-wrap justify-center gap-8">
-                {trustLogos.map((logo) => (
-                  <div key={logo.name} className="relative">
-                    <div className="h-20 w-44 rounded-lg bg-white flex items-center justify-center overflow-hidden p-4">
-                      {logo.type === "image" && logo.src ? (
-                        <img
-                          src={logo.src}
-                          alt={logo.name}
-                          className={`max-w-full object-contain max-h-full ${logo.scale || ""}`}
-                        />
-                      ) : (
-                        <span className="font-mono font-bold tracking-wider flex items-baseline gap-0.5">
-                          <span className="text-[#1a1a2e]/60 text-xs tracking-[3px]">NJ</span>
-                          <span className="text-[#1a1a2e] text-2xl">RAMS</span>
-                        </span>
-                      )}
+              <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+                <div className="flex gap-6 w-max animate-marquee">
+                  {[...trustLogos, ...trustLogos, ...trustLogos, ...trustLogos].map((logo, i) => (
+                    <div key={`${logo.name}-${i}`} className="flex-shrink-0">
+                      <div className="h-20 w-44 rounded-lg bg-white flex items-center justify-center overflow-hidden p-4">
+                        {logo.type === "image" && logo.src ? (
+                          <img
+                            src={logo.src}
+                            alt={logo.name}
+                            className={`max-w-full object-contain max-h-full ${logo.scale || ""}`}
+                          />
+                        ) : (
+                          <span className="font-mono font-bold tracking-wider flex items-baseline gap-0.5">
+                            <span className="text-[#1a1a2e]/60 text-xs tracking-[3px]">NJ</span>
+                            <span className="text-[#1a1a2e] text-2xl">RAMS</span>
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -479,7 +524,7 @@ const AgencyLandingPage = () => {
                           className="absolute inset-0 rounded-full origin-left"
                           style={{
                             background: 'linear-gradient(90deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
-                            animation: 'timeline-line-grow 4.5s ease-out infinite',
+                            animation: 'timeline-line-grow 4.5s ease-out forwards',
                             boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
                           }}
                         />
@@ -489,7 +534,7 @@ const AgencyLandingPage = () => {
                             width: 12,
                             height: 12,
                             top: -5,
-                            animation: 'timeline-travel 4.5s ease-out infinite',
+                            animation: 'timeline-travel 4.5s ease-out forwards',
                             background: 'hsl(262 83% 58%)',
                             boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
                             zIndex: 20,
@@ -504,7 +549,7 @@ const AgencyLandingPage = () => {
                             style={{
                               background: 'hsl(240 4% 18%)',
                               border: '2px solid hsl(240 4% 25%)',
-                              animation: `dot-glow-${i} 4.5s ease-out infinite`,
+                              animation: `dot-glow-${i} 4.5s ease-out forwards`,
                             }}
                           />
                           <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
@@ -514,25 +559,61 @@ const AgencyLandingPage = () => {
                     </div>
 
                     {/* Mobile: vertical */}
-                    <div className="md:hidden flex flex-col gap-8">
-                      {steps.map((item) => (
-                        <div key={item.step} className="flex items-start gap-5">
-                          <div className="flex flex-col items-center flex-shrink-0">
-                            <p className="text-2xl font-bold text-foreground tracking-tight">{item.step}</p>
-                            <div
-                              className="w-3 h-3 rounded-full mt-3"
-                              style={{
-                                background: 'hsl(262 83% 58%)',
-                                boxShadow: '0 0 12px hsl(262 83% 58% / 0.6)',
-                              }}
-                            />
-                          </div>
-                          <div className="pt-1">
-                            <h3 className="text-base font-semibold mb-1">{item.title}</h3>
-                            <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
-                          </div>
+                    <div className="md:hidden relative">
+                      {/* Single continuous vertical line from first dot to last dot */}
+                      <div
+                        className="absolute"
+                        style={{
+                          left: 15,
+                          top: 8,
+                          bottom: 8,
+                          width: 2,
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-border/30 rounded-full" />
+                        <div
+                          className="absolute inset-0 rounded-full origin-top"
+                          style={{
+                            background: 'linear-gradient(180deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
+                            animation: 'timeline-line-grow-v 4.5s ease-out forwards',
+                            boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
+                          }}
+                        />
+                        <div
+                          className="absolute rounded-full"
+                          style={{
+                            width: 12,
+                            height: 12,
+                            left: -5,
+                            animation: 'timeline-travel-v 4.5s ease-out forwards',
+                            background: 'hsl(262 83% 58%)',
+                            boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
+                            zIndex: 20,
+                          }}
+                        />
+                      </div>
+
+                      <div className="flex flex-col gap-10">
+                        {steps.map((item, i) => (
+                          <div key={item.step} className="flex items-center gap-5 relative">
+                            <div className="flex flex-col items-center flex-shrink-0 w-8">
+                              <div
+                                className="w-4 h-4 rounded-full relative z-10"
+                                style={{
+                                  background: 'hsl(240 4% 18%)',
+                                  border: '2px solid hsl(240 4% 25%)',
+                                  animation: `dot-glow-${i} 4.5s ease-out forwards`,
+                                }}
+                              />
+                            </div>
+                            <div>
+                              <p className="text-2xl font-bold text-foreground tracking-tight">{item.step}</p>
+                              <h3 className="text-base font-semibold mt-1">{item.title}</h3>
+                              <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
+                            </div>
                         </div>
                       ))}
+                      </div>
                     </div>
                   </>
                 );
@@ -553,62 +634,79 @@ const AgencyLandingPage = () => {
               way to go live
             </h2>
 
-            {/* Desktop table */}
-            <div className="mt-16 md:mt-20 hidden md:block overflow-x-auto">
-              <table className="w-full border-collapse table-fixed" style={{ fontSize: '1.06rem' }}>
-                <colgroup>
-                  <col className="w-[18%]" />
-                  <col className="w-[20.5%]" />
-                  <col className="w-[20.5%]" />
-                  <col className="w-[20.5%]" />
-                  <col className="w-[20.5%]" />
-                </colgroup>
-                <thead className="bg-card">
-                  <tr className="border-b border-border/50">
-                    <th className="text-left font-medium text-foreground py-6 pl-6 pr-4">Key Factors</th>
-                    {["In-house Dev", "Freelancers", "AI Tools"].map((col) => (
-                      <th key={col} className="text-center font-medium text-muted-foreground py-6 px-4">{col}</th>
-                    ))}
-                    <th className="text-center font-semibold py-6 px-4 text-primary">TrooLaunch</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-card">
-                  {[
-                    { label: "Ownership", values: ["Competing priorities", "Low accountability", "No ownership", "Fully managed"] },
-                    { label: "Speed", values: ["Limited bandwidth", "Unpredictable", "Fast for drafts only", "Live in 24 hrs"] },
-                    { label: "Execution Flow", values: ["Queue-based execution", "Back-and-forth iterations", "Breaks before production", "Structured, fast execution"] },
-                    { label: "Scalability", values: ["Bottlenecks at scale", "Hard to scale output", "Broken workflow", "Built for high volume"] },
-                    { label: "Outcome", values: ["Delayed launches", "Missed timelines", "Never goes live", "Launch-ready"] },
-                  ].map((row, i, arr) => (
-                    <tr key={row.label} className={i < arr.length - 1 ? "border-b border-border/50" : ""}>
-                      <td className="py-6 pr-4 font-medium text-foreground pl-6">{row.label}</td>
-                      {row.values.map((val, j) => (
-                        <td key={j} className={`py-6 px-4 text-center ${j === 3 ? "text-primary font-semibold" : "text-muted-foreground"}`}>{val}</td>
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            {(() => {
+              const rows = [
+                { label: "Ownership", values: ["Competing priorities", "Low accountability", "No ownership", "Fully managed"] },
+                { label: "Speed", values: ["Limited bandwidth", "Unpredictable", "Fast for drafts only", "Live in 24 hrs"] },
+                { label: "Execution Flow", values: ["Queue-based execution", "Back-and-forth iterations", "Breaks before production", "Structured, fast execution"] },
+                { label: "Scalability", values: ["Bottlenecks at scale", "Hard to scale output", "Broken workflow", "Built for high volume"] },
+                { label: "Outcome", values: ["Delayed launches", "Missed timelines", "Never goes live", "Launch-ready"] },
+              ];
+              const competitors = ["In-house Dev", "Freelancers", "AI Tools"];
 
-            {/* Mobile cards */}
-            <div className="mt-12 md:hidden space-y-4">
-              {[
-                { label: "Ownership", others: "Competing priorities · Low accountability · No ownership", troo: "Fully managed" },
-                { label: "Speed", others: "Limited bandwidth · Unpredictable · Fast for drafts only", troo: "Live in 24 hrs" },
-                { label: "Execution Flow", others: "Queue-based · Back-and-forth · Breaks before production", troo: "Structured, fast execution" },
-                { label: "Scalability", others: "Bottlenecks · Hard to scale · Broken workflow", troo: "Built for high volume" },
-                { label: "Outcome", others: "Delayed launches · Missed timelines · Never goes live", troo: "Launch-ready" },
-              ].map((row) => (
-                <div key={row.label} className="bg-card border border-border rounded-lg p-5">
-                  <p className="font-semibold text-foreground mb-3">{row.label}</p>
-                  <p className="text-muted-foreground text-xs leading-relaxed mb-3">{row.others}</p>
-                  <div className="border-t border-border pt-3">
-                    <p className="text-primary font-semibold text-sm">TrooLaunch: {row.troo}</p>
+              return (
+                <div className="mt-12 md:mt-20 -mx-6 md:mx-0 overflow-x-auto">
+                  <div className="px-6 md:px-0 min-w-[720px]">
+                    <div className="relative bg-card border border-border rounded-2xl overflow-hidden">
+                      {/* Highlighted TrooLaunch column band */}
+                      <div
+                        aria-hidden
+                        className="absolute top-0 bottom-0 pointer-events-none"
+                        style={{
+                          left: '18%',
+                          width: 'calc(82% / 4)',
+                          background: 'linear-gradient(180deg, hsl(262 83% 58% / 0.12) 0%, hsl(262 83% 58% / 0.06) 100%)',
+                          borderLeft: '1px solid hsl(262 83% 58% / 0.35)',
+                          borderRight: '1px solid hsl(262 83% 58% / 0.35)',
+                          boxShadow: '0 0 60px -10px hsl(262 83% 58% / 0.35)',
+                        }}
+                      />
+
+                      <div
+                        className="grid relative text-sm md:text-[1.02rem]"
+                        style={{ gridTemplateColumns: '18% repeat(4, 1fr)' }}
+                      >
+                        {/* Header row */}
+                        <div className="py-5 md:py-6 pl-4 md:pl-6 pr-3 md:pr-4 font-medium text-foreground border-b border-border/50">Key Factors</div>
+                        <div className="py-5 md:py-6 px-3 md:px-4 pl-8 md:pl-10 font-semibold text-primary border-b border-primary/30">
+                          TrooLaunch
+                        </div>
+                        {competitors.map((col) => (
+                          <div key={col} className="py-5 md:py-6 px-3 md:px-4 pl-8 md:pl-10 font-medium text-muted-foreground border-b border-border/50">
+                            {col}
+                          </div>
+                        ))}
+
+                        {/* Data rows */}
+                        {rows.map((row, i) => {
+                          const isLast = i === rows.length - 1;
+                          const borderCls = isLast ? "" : "border-b border-border/40";
+                          return (
+                            <div key={row.label} className="contents">
+                              <div className={`py-5 md:py-6 pl-4 md:pl-6 pr-3 md:pr-4 font-medium text-foreground ${borderCls}`}>{row.label}</div>
+                              <div className={`py-5 md:py-6 px-3 md:px-4 text-primary font-semibold ${isLast ? "" : "border-b border-primary/20"}`}>
+                                <div className="flex items-start gap-2">
+                                  <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5 md:mt-1" strokeWidth={3} />
+                                  <span>{row.values[3]}</span>
+                                </div>
+                              </div>
+                              {row.values.slice(0, 3).map((val, j) => (
+                                <div key={j} className={`py-5 md:py-6 px-3 md:px-4 text-muted-foreground/80 ${borderCls}`}>
+                                  <div className="flex items-start gap-2">
+                                    <X className="w-4 h-4 text-destructive/70 flex-shrink-0 mt-0.5 md:mt-1" strokeWidth={2.5} />
+                                    <span>{val}</span>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+            })()}
 
             <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
               No existing solution is built to fast-track design-to-live execution
@@ -633,16 +731,16 @@ const AgencyLandingPage = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {[
-                { metric: "24h", label: "From design to live" },
-                { metric: "2X", label: "Higher margins" },
-                { metric: "5X+", label: "More output per team" },
-                { metric: "$3k+", label: "Extra revenue per client" },
+                { prefix: "", value: 24, suffix: "h", label: "From design to live" },
+                { prefix: "", value: 2, suffix: "X", label: "Higher margins" },
+                { prefix: "", value: 5, suffix: "X+", label: "More output per team" },
+                { prefix: "$", value: 3, suffix: "k+", label: "Extra revenue per client" },
               ].map((item) => (
                 <div
-                  key={item.metric}
+                  key={item.label}
                   className="bg-card border border-border rounded-lg p-5 sm:p-8 md:p-10 text-center"
                 >
-                  <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-primary mb-2 md:mb-3">{item.metric}</p>
+                  <AnimatedMetric prefix={item.prefix} value={item.value} suffix={item.suffix} />
                   <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">{item.label}</p>
                 </div>
               ))}

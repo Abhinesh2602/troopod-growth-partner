@@ -76,30 +76,47 @@
 @keyframes timeline-travel {
   0% { left: -6px; opacity: 0; }
   3% { opacity: 1; }
-  85% { opacity: 1; left: calc(100% - 6px); }
-  86%, 100% { opacity: 0; left: -6px; }
+  90% { opacity: 1; left: calc(100% - 6px); }
+  100% { opacity: 0; left: calc(100% - 6px); }
 }
 
 @keyframes timeline-line-grow {
   0% { transform: scaleX(0); }
-  85% { transform: scaleX(1); }
-  86%, 100% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
 }
 
 @keyframes dot-glow-0 {
   0% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
-  3%, 85% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
-  86%, 100% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
+  5%, 100% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
 }
 
 @keyframes dot-glow-1 {
-  0%, 32% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
-  33%, 85% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
-  86%, 100% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
+  0%, 40% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
+  50%, 100% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
 }
 
 @keyframes dot-glow-2 {
-  0%, 84% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
-  85% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
-  86%, 100% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
+  0%, 85% { background: hsl(240 4% 18%); border-color: hsl(240 4% 25%); box-shadow: none; }
+  95%, 100% { background: hsl(262 83% 58%); border-color: hsl(262 83% 58%); box-shadow: 0 0 12px hsl(262 83% 58% / 0.7); }
+}
+
+@keyframes timeline-line-grow-v {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes timeline-travel-v {
+  0% { top: -6px; opacity: 0; }
+  3% { opacity: 1; }
+  90% { opacity: 1; top: calc(100% - 6px); }
+  100% { opacity: 0; top: calc(100% - 6px); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
+}
+
+.animate-marquee {
+  animation: marquee 15s linear infinite;
 }
