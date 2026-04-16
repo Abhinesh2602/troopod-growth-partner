@@ -101,8 +101,11 @@ const ProductCardsSection = () => {
 
   const items = [...productCards, ...productCards, ...productCards];
 
+  const cardWidth = typeof window !== 'undefined' && window.innerWidth < 640 ? 300 : 540;
+  const cardGap = typeof window !== 'undefined' && window.innerWidth < 640 ? 16 : 24;
+
   const getTransform = () => {
-    return `translateX(calc(50% - ${current * (540 + 24) + 270}px))`;
+    return `translateX(calc(50% - ${current * (cardWidth + cardGap) + cardWidth / 2}px))`;
   };
 
   const getRealIndex = (i: number) => ((i % total) + total) % total;
@@ -120,7 +123,7 @@ const ProductCardsSection = () => {
 
       <div className="relative overflow-visible">
         <div
-          className={`flex gap-6 ${isTransitioning ? "transition-transform duration-500 ease-in-out" : ""}`}
+          className={`flex gap-4 sm:gap-6 ${isTransitioning ? "transition-transform duration-500 ease-in-out" : ""}`}
           style={{ transform: getTransform() }}
         >
           {items.map((card, i) => {
@@ -129,7 +132,7 @@ const ProductCardsSection = () => {
               <div
                 key={i}
                 className="flex-shrink-0 transition-all duration-500"
-                style={{ width: 540 }}
+                style={{ width: cardWidth }}
               >
                 <div
                   className={`bg-card border border-border rounded-2xl overflow-hidden transition-all duration-500 ${
