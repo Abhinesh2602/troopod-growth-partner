@@ -12,7 +12,7 @@ import ericAvatar from "@/assets/clients/martin-monroe.png";
 import ronakAvatar from "@/assets/clients/ronak-shah.png";
 
 const trustLogos = [
-  { name: "Martin Monroe", src: martinMonroeLogo, type: "image" as const, scale: "scale-[2.2]" },
+  { name: "Martin Monroe", src: martinMonroeLogo, type: "image" as const, scale: "scale-[2.2] translate-y-1" },
   { name: "NJRAMs", src: null, type: "njrams" as const },
   { name: "Obvi", src: obviLogo, type: "image" as const },
   { name: "Essor", src: essorLogo, type: "image" as const },
