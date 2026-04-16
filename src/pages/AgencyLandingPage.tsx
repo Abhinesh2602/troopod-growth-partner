@@ -217,7 +217,7 @@ const AgencyLandingPage = () => {
             </div>
 
             <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl">
-              So campaigns move fast, but landing pages don't keep up
+              Campaigns move fast. Designs move fast. Execution can't keep up
             </p>
           </div>
         </section>
