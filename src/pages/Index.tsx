@@ -9,7 +9,6 @@ import AboutSection from "@/components/AboutSection";
 import SolutionsSection from "@/components/SolutionsSection";
 import CTASection from "@/components/CTASection";
 
-
 const Index = () => {
   const location = useLocation();
 
