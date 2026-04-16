@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import { UserX, Bot, Handshake, Layers, Award, Zap } from "lucide-react";
+import { UserX, Bot, Handshake, Layers, Award, Zap, ArrowLeft, ArrowRight } from "lucide-react";
 
 const trustLogos = [
   "Agency One",
@@ -162,6 +162,57 @@ const AgencyLandingPage = () => {
                   Troopod combines human expertise with AI execution to help marketing
                   teams move faster and get real results
                 </p>
+              </div>
+            </section>
+
+            {/* Section 04 — How It Works Timeline */}
+            <div className="w-full h-px bg-border" />
+            <section id="how-it-works" className="section-padding w-full">
+              <div className="max-w-6xl mx-auto">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight">
+                  Go Live in{" "}
+                  <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
+                    3 simple steps
+                  </span>
+                </h2>
+
+                <div className="mt-16 md:mt-20">
+                  {/* Timeline */}
+                  <div className="grid grid-cols-3 gap-0 relative">
+                    {/* Horizontal line */}
+                    <div className="absolute top-[2.75rem] left-0 right-0 h-px bg-border" />
+
+                    {[
+                      {
+                        step: "01",
+                        title: "Share your design or idea",
+                        description: "Figma, HTML, or just a brief",
+                      },
+                      {
+                        step: "02",
+                        title: "Troopod handles the build + QA",
+                        description: "Structure, integrations, everything production-ready",
+                      },
+                      {
+                        step: "03",
+                        title: "Live in 24 hours",
+                        description: "Ready to launch with your campaigns",
+                      },
+                    ].map((item, i) => (
+                      <div key={item.step} className="relative pr-8">
+                        <p className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+                          {item.step}
+                        </p>
+                        {/* Dot */}
+                        <div className="w-4 h-4 rounded-full bg-primary mb-6 relative z-10" />
+                        <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </section>
           </div>
