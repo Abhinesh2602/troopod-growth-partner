@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import troopodLogo from "@/assets/troopod-logo.png";
 
@@ -7,6 +7,7 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleBrandClick = (e: React.MouseEvent) => {
@@ -77,8 +78,51 @@ const Header = () => {
           >
             Tell us about your brand
           </a>
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-lg border border-border text-foreground hover:bg-secondary transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
         </div>
       </div>
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-md">
+          <nav className="flex flex-col px-6 py-4 gap-1">
+            <Link
+              to="/"
+              onClick={() => setMobileOpen(false)}
+              className="px-4 py-3 text-sm font-medium text-foreground rounded-lg hover:bg-secondary transition-colors"
+            >
+              Home
+            </Link>
+            <Link
+              to="/agency"
+              onClick={() => setMobileOpen(false)}
+              className="px-4 py-3 text-sm font-medium text-foreground rounded-lg hover:bg-secondary transition-colors"
+            >
+              Agencies
+            </Link>
+            <Link
+              to="/case-studies"
+              onClick={() => setMobileOpen(false)}
+              className="px-4 py-3 text-sm font-medium text-foreground rounded-lg hover:bg-secondary transition-colors"
+            >
+              Case Studies
+            </Link>
+            <a
+              href="mailto:hello@troopod.io"
+              onClick={() => setMobileOpen(false)}
+              className="mt-2 inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-5 py-3 text-sm font-medium hover:opacity-90 transition-opacity"
+            >
+              Tell us about your brand
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
