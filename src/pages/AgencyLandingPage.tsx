@@ -358,33 +358,31 @@ const AgencyLandingPage = () => {
               <table className="w-full border-collapse" style={{ fontSize: '1.06rem' }}>
                 <thead className="bg-card">
                   <tr className="border-b border-border/50">
-                    <th className="text-left font-medium text-foreground py-6 pl-6 pr-4">Key Limitations</th>
-                    {["In-house teams", "Agencies", "Freelancers"].map((col) => (
+                    <th className="text-left font-medium text-foreground py-6 pl-6 pr-4">Key Factors</th>
+                    {["In-house Dev", "Freelancers", "AI Tools"].map((col) => (
                       <th key={col} className="text-center font-medium text-muted-foreground py-6 px-4 min-w-[160px]">{col}</th>
                     ))}
+                    <th className="text-center font-medium py-6 px-4 min-w-[160px] text-primary">TrooLaunch</th>
                   </tr>
                 </thead>
                 <tbody className="bg-card">
                   {[
-                    { label: "Ownership", values: ["Changing priorities", "Project-based", "Lack of ownership"] },
-                    { label: "Website Expertise", values: ["Limited", "Template-driven", "Unreliable"] },
-                    { label: "Execution Speed", values: ["Slow at scale", "Hard to move fast", "Inconsistent"] },
-                    { label: "Costing", values: ["High to maintain", "Expensive to retain", "Cheap but risky"] },
+                    { label: "Ownership", values: ["Competing priorities", "Low accountability", "No ownership", "Fully managed"] },
+                    { label: "Speed", values: ["Limited by bandwidth", "Unpredictable timelines", "Fast for drafts only", "Live in 24 hrs"] },
+                    { label: "Execution Flow", values: ["Queue-based execution", "Back-and-forth iterations", "Breaks before production", "Structured, fast execution"] },
+                    { label: "Scalability", values: ["Bottlenecked as volume grows", "Hard to scale output", "Not built for real workflows", "Built for high volume"] },
+                    { label: "Outcome", values: ["Delayed launches", "Missed timelines", "Never goes live", "Ready to launch, every time"] },
                   ].map((row, i, arr) => (
                     <tr key={row.label} className={i < arr.length - 1 ? "border-b border-border/50" : ""}>
                       <td className="py-6 pr-4 font-medium text-foreground pl-6">{row.label}</td>
                       {row.values.map((val, j) => (
-                        <td key={j} className="py-6 px-4 text-center text-muted-foreground">{val}</td>
+                        <td key={j} className={`py-6 px-4 text-center ${j === 3 ? "text-primary font-medium" : "text-muted-foreground"}`}>{val}</td>
                       ))}
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-
-            <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl">
-              Each option solves part of the problem, none solve it fully
-            </p>
           </div>
         </section>
 
