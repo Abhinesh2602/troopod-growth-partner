@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "@/components/Header";
-import { UserX, AlertTriangle, Clock, Layers, TrendingUp, Sparkles, ArrowLeft, ArrowRight, Quote, Check, X } from "lucide-react";
+import { UserX, AlertTriangle, Clock, Layers, TrendingUp, Sparkles, ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import martinMonroeLogo from "@/assets/brands/martinmonroe_cover.png";
 import obviLogo from "@/assets/brands/obvi.png";
 import essorLogo from "@/assets/brands/ESSOR_Logo-320x83-black.webp";
@@ -52,9 +52,9 @@ const productCards = [
     image: flexproWebpage,
     imageAlt: "FlexPro Meals landing page",
     domain: "flexpromeals.com",
-    title: "Figma → Full website live in 2 weeks",
-    description: "From design to complete website launch without any delays",
-    quote: "I haven't seen this kind of speed to go live before. Highly recommend for teams looking to launch quickly.",
+    title: "Manus → Dev in 24 hours",
+    description: "From Manus to a fully functional page, ready to go live",
+    quote: "We asked if they could take a design from Manus to live, and they delivered it quickly, without any friction. It shows the adaptability of the team.",
     author: "Eric Vaughn, Martin Monroe",
     avatar: ericAvatar,
   },
@@ -62,8 +62,8 @@ const productCards = [
     image: primalWebpage,
     imageAlt: "8Primal landing page",
     domain: "8primal.com",
-    title: "Design → Complete theme in 12 weeks",
-    description: "From design to complete Shopify theme development, fully live and ready to scale",
+    title: "Figma → Full website live in 2 weeks",
+    description: "From design to complete website launch without any delays",
   },
   {
     image: wondercowWebpage,
@@ -341,6 +341,25 @@ const AnimatedMetric = ({ prefix, value, suffix }: { prefix: string; value: numb
 };
 
 const AgencyLandingPage = () => {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const [timelineVisible, setTimelineVisible] = useState(false);
+
+  useEffect(() => {
+    const el = timelineRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimelineVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-clip">
       <Header />
@@ -372,9 +391,9 @@ const AgencyLandingPage = () => {
               </a>
             </div>
 
-            <div className="mt-16 md:mt-20">
-              <p className="text-sm font-medium text-muted-foreground tracking-wide mb-6">
-                Used by performance teams behind leading DTC brands
+            <div className="mt-16 md:mt-20 text-center">
+              <p className="text-sm font-medium text-muted-foreground tracking-wide mb-6 px-4">
+                Used by performance teams<br className="sm:hidden" /> behind leading DTC brands
               </p>
               <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
                 <div className="flex gap-6 w-max animate-marquee">
@@ -407,7 +426,7 @@ const AgencyLandingPage = () => {
         <section className="section-padding">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight">
-              Design is fast.{" "}
+              Design is fast.<br className="sm:hidden" />{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
                 Going live isn't
               </span>
@@ -506,7 +525,7 @@ const AgencyLandingPage = () => {
               </span>
             </h2>
 
-            <div className="mt-16 md:mt-20">
+            <div ref={timelineRef} className="mt-16 md:mt-20">
               {(() => {
                 const steps = [
                   { step: "01", title: "Share your design or idea", description: "Figma, HTML, or just a brief" },
@@ -524,7 +543,8 @@ const AgencyLandingPage = () => {
                           className="absolute inset-0 rounded-full origin-left"
                           style={{
                             background: 'linear-gradient(90deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
-                            animation: 'timeline-line-grow 4.5s ease-out forwards',
+                            animation: timelineVisible ? 'timeline-line-grow 4.5s ease-out forwards' : 'none',
+                            transform: timelineVisible ? undefined : 'scaleX(0)',
                             boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
                           }}
                         />
@@ -534,7 +554,8 @@ const AgencyLandingPage = () => {
                             width: 12,
                             height: 12,
                             top: -5,
-                            animation: 'timeline-travel 4.5s ease-out forwards',
+                            animation: timelineVisible ? 'timeline-travel 4.5s ease-out forwards' : 'none',
+                            opacity: timelineVisible ? undefined : 0,
                             background: 'hsl(262 83% 58%)',
                             boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
                             zIndex: 20,
@@ -549,7 +570,7 @@ const AgencyLandingPage = () => {
                             style={{
                               background: 'hsl(240 4% 18%)',
                               border: '2px solid hsl(240 4% 25%)',
-                              animation: `dot-glow-${i} 4.5s ease-out forwards`,
+                              animation: timelineVisible ? `dot-glow-${i} 4.5s ease-out forwards` : 'none',
                             }}
                           />
                           <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
@@ -565,8 +586,8 @@ const AgencyLandingPage = () => {
                         className="absolute"
                         style={{
                           left: 15,
-                          top: 8,
-                          bottom: 8,
+                          top: 16,
+                          bottom: 16,
                           width: 2,
                         }}
                       >
@@ -575,7 +596,8 @@ const AgencyLandingPage = () => {
                           className="absolute inset-0 rounded-full origin-top"
                           style={{
                             background: 'linear-gradient(180deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
-                            animation: 'timeline-line-grow-v 4.5s ease-out forwards',
+                            animation: timelineVisible ? 'timeline-line-grow-v 4.5s ease-out forwards' : 'none',
+                            transform: timelineVisible ? undefined : 'scaleY(0)',
                             boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
                           }}
                         />
@@ -585,7 +607,8 @@ const AgencyLandingPage = () => {
                             width: 12,
                             height: 12,
                             left: -5,
-                            animation: 'timeline-travel-v 4.5s ease-out forwards',
+                            animation: timelineVisible ? 'timeline-travel-v 4.5s ease-out forwards' : 'none',
+                            opacity: timelineVisible ? undefined : 0,
                             background: 'hsl(262 83% 58%)',
                             boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
                             zIndex: 20,
@@ -595,14 +618,14 @@ const AgencyLandingPage = () => {
 
                       <div className="flex flex-col gap-10">
                         {steps.map((item, i) => (
-                          <div key={item.step} className="flex items-center gap-5 relative">
-                            <div className="flex flex-col items-center flex-shrink-0 w-8">
+                          <div key={item.step} className="flex items-start gap-5 relative">
+                            <div className="flex flex-col items-center flex-shrink-0 w-8 mt-2">
                               <div
                                 className="w-4 h-4 rounded-full relative z-10"
                                 style={{
                                   background: 'hsl(240 4% 18%)',
                                   border: '2px solid hsl(240 4% 25%)',
-                                  animation: `dot-glow-${i} 4.5s ease-out forwards`,
+                                  animation: timelineVisible ? `dot-glow-${i} 4.5s ease-out forwards` : 'none',
                                 }}
                               />
                             </div>
@@ -685,17 +708,11 @@ const AgencyLandingPage = () => {
                             <div key={row.label} className="contents">
                               <div className={`py-5 md:py-6 pl-4 md:pl-6 pr-3 md:pr-4 font-medium text-foreground ${borderCls}`}>{row.label}</div>
                               <div className={`py-5 md:py-6 px-3 md:px-4 text-primary font-semibold ${isLast ? "" : "border-b border-primary/20"}`}>
-                                <div className="flex items-start gap-2">
-                                  <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5 md:mt-1" strokeWidth={3} />
-                                  <span>{row.values[3]}</span>
-                                </div>
+                                {row.values[3]}
                               </div>
                               {row.values.slice(0, 3).map((val, j) => (
                                 <div key={j} className={`py-5 md:py-6 px-3 md:px-4 text-muted-foreground/80 ${borderCls}`}>
-                                  <div className="flex items-start gap-2">
-                                    <X className="w-4 h-4 text-destructive/70 flex-shrink-0 mt-0.5 md:mt-1" strokeWidth={2.5} />
-                                    <span>{val}</span>
-                                  </div>
+                                  {val}
                                 </div>
                               ))}
                             </div>
