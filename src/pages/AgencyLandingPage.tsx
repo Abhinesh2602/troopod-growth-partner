@@ -50,13 +50,31 @@ const productCards = [
     quote: "The quality and speed exceeded every agency we've worked with before",
     author: "Michael Torres, VP of Digital",
   },
+  {
+    image: "Project Delta",
+    title: "Scalable page systems for growing brands",
+    description: "Whether you need 5 pages or 50, the same quality and speed applies — built to scale with your growth",
+    quote: "Troopod became an extension of our team, not just another vendor",
+    author: "Priya Sharma, CMO",
+  },
 ];
 
 const ProductCardsSection = () => {
   const [current, setCurrent] = useState(0);
-  const prev = () => setCurrent((c) => (c === 0 ? productCards.length - 1 : c - 1));
-  const next = () => setCurrent((c) => (c === productCards.length - 1 ? 0 : c + 1));
-  const card = productCards[current];
+  const total = productCards.length;
+  const prev = () => setCurrent((c) => c - 1);
+  const next = () => setCurrent((c) => c + 1);
+
+  // Create enough clones for infinite illusion: 3 full sets
+  const items = [...productCards, ...productCards, ...productCards];
+  const offset = total; // start from middle set
+
+  const getTransform = () => {
+    const idx = current + offset;
+    return `translateX(calc(50% - ${idx * (540 + 24) + 270}px))`;
+  };
+
+  const getRealIndex = (i: number) => ((i % total) + total) % total;
 
   return (
     <section className="section-padding w-full">
@@ -73,35 +91,36 @@ const ProductCardsSection = () => {
       <div className="relative overflow-visible">
         <div
           className="flex transition-transform duration-500 ease-in-out gap-6"
-          style={{
-            transform: `translateX(calc(50% - ${current * (540 + 24) + 270}px))`,
-          }}
+          style={{ transform: getTransform() }}
         >
-          {productCards.map((card, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 transition-all duration-500"
-              style={{ width: 540 }}
-            >
+          {items.map((card, i) => {
+            const isActive = getRealIndex(i - offset) === getRealIndex(current);
+            return (
               <div
-                className={`bg-card border border-border rounded-2xl overflow-hidden transition-all duration-500 ${
-                  i === current ? "opacity-100 scale-100" : "opacity-40 scale-95"
-                }`}
+                key={i}
+                className="flex-shrink-0 transition-all duration-500"
+                style={{ width: 540 }}
               >
-                <div className="w-full aspect-[16/10] bg-secondary flex items-center justify-center">
-                  <span className="text-muted-foreground text-sm">{card.image}</span>
-                </div>
-                <div className="p-6 space-y-4">
-                  <h3 className="text-xl font-semibold">{card.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
-                  <div className="border-t border-border pt-4">
-                    <p className="text-muted-foreground italic text-sm leading-relaxed">"{card.quote}"</p>
-                    <p className="text-xs text-muted-foreground mt-2 font-medium">— {card.author}</p>
+                <div
+                  className={`bg-card border border-border rounded-2xl overflow-hidden transition-all duration-500 ${
+                    isActive ? "opacity-100 scale-100" : "opacity-40 scale-95"
+                  }`}
+                >
+                  <div className="w-full aspect-[16/10] bg-secondary flex items-center justify-center">
+                    <span className="text-muted-foreground text-sm">{card.image}</span>
+                  </div>
+                  <div className="p-6 space-y-4">
+                    <h3 className="text-xl font-semibold">{card.title}</h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{card.description}</p>
+                    <div className="border-t border-border pt-4">
+                      <p className="text-muted-foreground italic text-sm leading-relaxed">"{card.quote}"</p>
+                      <p className="text-xs text-muted-foreground mt-2 font-medium">— {card.author}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -112,7 +131,7 @@ const ProductCardsSection = () => {
         </button>
         <div className="flex gap-2">
           {productCards.map((_, i) => (
-            <button key={i} onClick={() => setCurrent(i)} className={`w-2 h-2 rounded-full transition-colors ${i === current ? "bg-primary" : "bg-border"}`} />
+            <button key={i} onClick={() => setCurrent(i)} className={`w-2 h-2 rounded-full transition-colors ${getRealIndex(current) === i ? "bg-primary" : "bg-border"}`} />
           ))}
         </div>
         <button onClick={next} className="p-2 rounded-full border border-border hover:bg-secondary transition-colors" aria-label="Next">
