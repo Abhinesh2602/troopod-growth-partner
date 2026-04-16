@@ -78,9 +78,9 @@ const ProductCardsSection = () => {
     <section className="section-padding">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight mb-16 md:mb-20">
-          What you{" "}
+          How agencies{" "}
           <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
-            actually get
+            ship faster with TrooLaunch
           </span>
         </h2>
       </div>
