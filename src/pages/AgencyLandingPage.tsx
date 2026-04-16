@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "@/components/Header";
-import { UserX, Puzzle, Clock, Layers, TrendingUp, Sparkles, ArrowLeft, ArrowRight } from "lucide-react";
+import { UserX, AlertTriangle, Clock, Layers, TrendingUp, Sparkles, ArrowLeft, ArrowRight } from "lucide-react";
 
 const trustLogos = [
   "Martin Monroe",
@@ -16,7 +16,7 @@ const problems = [
     description: "Internal teams have priorities\nlanding pages wait in queue",
   },
   {
-    icon: Puzzle,
+    icon: AlertTriangle,
     title: "AI tools don't get to live",
     description: "Great for drafts and ideas\nnot for production-ready pages",
   },
