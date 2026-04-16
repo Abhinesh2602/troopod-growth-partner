@@ -227,9 +227,9 @@ const AgencyLandingPage = () => {
         <section className="section-padding">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-center leading-tight tracking-tight">
-              Meet Troopod:{" "}
+              Meet TrooLaunch:{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
-                The full-stack, AI-native website growth partner
+                Turn designs into live pages in 24 hours
               </span>
             </h2>
 
