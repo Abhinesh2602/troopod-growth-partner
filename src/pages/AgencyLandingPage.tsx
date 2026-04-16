@@ -155,7 +155,7 @@ const AgencyLandingPage = () => {
             </h1>
 
             <p className="text-muted-foreground text-lg md:text-xl lg:text-2xl max-w-3xl mt-6">
-              Built for performance marketing agencies doing heavy creative testing and launching new campaigns every now and then
+              Built for performance marketing agencies running high-velocity campaigns and constant creative testing
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
@@ -163,7 +163,7 @@ const AgencyLandingPage = () => {
                 href="mailto:hello@troopod.io"
                 className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-8 py-4 text-base font-medium hover:opacity-90 transition-opacity"
               >
-                Get your first page live Now
+                Go Live in 24 hrs
               </a>
               <a
                 href="#how-it-works"
@@ -175,7 +175,7 @@ const AgencyLandingPage = () => {
 
             <div className="mt-16 md:mt-20">
               <p className="text-sm font-medium text-muted-foreground tracking-wide mb-6">
-                Used by teams working @
+                Used by performance teams behind leading DTC brands
               </p>
               <div className="flex flex-wrap justify-center gap-6">
                 {trustLogos.map((name) => (
