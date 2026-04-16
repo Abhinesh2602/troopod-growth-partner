@@ -3,11 +3,10 @@ import Header from "@/components/Header";
 import { UserX, Bot, Handshake, Layers, Award, Zap, ArrowLeft, ArrowRight } from "lucide-react";
 
 const trustLogos = [
-  "Agency One",
-  "Agency Two",
-  "Agency Three",
-  "Agency Four",
-  "Agency Five",
+  "Martin Monroe",
+  "NJRAMs",
+  "Obvi",
+  "Essor",
 ];
 
 const problems = [
