@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "@/components/Header";
-import { UserX, Puzzle, Clock, Layers, Award, Send, ArrowLeft, ArrowRight } from "lucide-react";
+import { UserX, Puzzle, Clock, Layers, TrendingUp, Sparkles, ArrowLeft, ArrowRight } from "lucide-react";
 
 const trustLogos = [
   "Martin Monroe",
@@ -241,12 +241,12 @@ const AgencyLandingPage = () => {
                   description: "Design to live, fully handled",
                 },
                 {
-                  icon: Award,
+                  icon: TrendingUp,
                   title: "Proven at Scale",
                   description: "Battle-tested with 100+ brands",
                 },
                 {
-                  icon: Send,
+                  icon: Sparkles,
                   title: "Zero Team Effort",
                   description: "Share the design. We ship it",
                 },
