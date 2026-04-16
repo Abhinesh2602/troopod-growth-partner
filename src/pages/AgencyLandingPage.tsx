@@ -169,18 +169,24 @@ const AgencyLandingPage = () => {
             <div className="w-full h-px bg-border" />
             <section id="how-it-works" className="section-padding w-full">
               <div className="max-w-6xl mx-auto">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight">
-                  Go Live in{" "}
-                  <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
-                    3 simple steps
-                  </span>
-                </h2>
+                {/* Header row */}
+                <div className="flex items-start justify-between gap-8">
+                  <div className="max-w-xl">
+                    <p className="text-sm font-medium text-muted-foreground mb-3">How it works</p>
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight tracking-tight">
+                      Go Live in{" "}
+                      <span className="bg-clip-text text-transparent" style={{ backgroundImage: 'linear-gradient(90deg, hsl(262 83% 58%) 0%, hsl(0 0% 95%) 100%)' }}>
+                        3 simple steps
+                      </span>
+                    </h2>
+                  </div>
+                </div>
 
+                {/* Timeline */}
                 <div className="mt-16 md:mt-20">
-                  {/* Timeline */}
-                  <div className="grid grid-cols-3 gap-0 relative">
-                    {/* Horizontal line */}
-                    <div className="absolute top-[2.75rem] left-0 right-0 h-px bg-border" />
+                  <div className="grid grid-cols-3 relative">
+                    {/* Horizontal line through dots */}
+                    <div className="absolute left-0 right-0 h-[2px] bg-border" style={{ top: '2.75rem' }} />
 
                     {[
                       {
@@ -198,13 +204,13 @@ const AgencyLandingPage = () => {
                         title: "Live in 24 hours",
                         description: "Ready to launch with your campaigns",
                       },
-                    ].map((item, i) => (
+                    ].map((item) => (
                       <div key={item.step} className="relative pr-8">
-                        <p className="text-2xl md:text-3xl font-bold mb-4 text-foreground">
+                        <p className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">
                           {item.step}
                         </p>
-                        {/* Dot */}
-                        <div className="w-4 h-4 rounded-full bg-primary mb-6 relative z-10" />
+                        {/* Dot on the line */}
+                        <div className="w-4 h-4 rounded-full bg-foreground mb-6 relative z-10" />
                         <h3 className="text-base md:text-lg font-semibold mb-2">{item.title}</h3>
                         <p className="text-muted-foreground text-sm leading-relaxed">
                           {item.description}
