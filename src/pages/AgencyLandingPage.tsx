@@ -37,10 +37,10 @@ const productCards = [
   },
   {
     image: "Project Beta",
-    title: "Campaign pages that match your creative velocity",
-    description: "Launch new variants as fast as your team can design them — no developer queue, no template constraints",
-    quote: "We went from launching one page a month to five pages a week without adding headcount",
-    author: "Sarah Chen, Marketing Director",
+    title: "Figma → Full website live in 2 weeks",
+    description: "From design to complete website launch without any delays",
+    quote: "I haven't seen this kind of speed to go live before. Highly recommend for teams looking to launch quickly.",
+    author: "Eric Vaughn, Martin Monroe",
   },
   {
     image: "Project Gamma",
