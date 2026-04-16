@@ -267,8 +267,7 @@ const AgencyLandingPage = () => {
             </div>
 
             <p className="text-center text-muted-foreground mt-12 md:mt-16 text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed">
-              Troopod combines human expertise with AI execution to help marketing
-              teams move faster and get real results
+              Launch faster, Test more, and Scale what works
             </p>
           </div>
         </section>
