@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Header from "@/components/Header";
-import { UserX, Bot, Handshake, Layers, Award, Zap, ArrowLeft, ArrowRight } from "lucide-react";
+import { Code, Sparkles, Clock, Layers, Award, Zap, ArrowLeft, ArrowRight } from "lucide-react";
 
 const trustLogos = [
   "Martin Monroe",
@@ -11,17 +11,17 @@ const trustLogos = [
 
 const problems = [
   {
-    icon: UserX,
+    icon: Code,
     title: "Developer bandwidth limited",
     description: "Internal teams have priorities\nlanding pages wait in queue",
   },
   {
-    icon: Bot,
+    icon: Sparkles,
     title: "AI tools don't get to live",
     description: "Great for drafts and ideas\nnot for production-ready pages",
   },
   {
-    icon: Handshake,
+    icon: Clock,
     title: "External partners move slow",
     description: "Briefs, back-and-forth, delays\ntimelines for every page",
   },
@@ -206,7 +206,7 @@ const AgencyLandingPage = () => {
                   className="bg-card border border-border rounded-lg p-10 md:p-12 text-center"
                 >
                   <div className="flex justify-center mb-6">
-                    <item.icon className="w-10 h-10 text-primary" />
+                    <item.icon className="w-[60px] h-[60px] text-primary" />
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line">
