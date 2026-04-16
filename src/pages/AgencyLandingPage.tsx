@@ -375,9 +375,9 @@ const AgencyLandingPage = () => {
                 <tbody className="bg-card">
                   {[
                     { label: "Ownership", values: ["Competing priorities", "Low accountability", "No ownership", "Fully managed"] },
-                    { label: "Speed", values: ["Limited bandwidth", "Unpredictable timelines", "Fast for drafts only", "Live in 24 hrs"] },
+                    { label: "Speed", values: ["Limited bandwidth", "Unpredictable", "Fast for drafts only", "Live in 24 hrs"] },
                     { label: "Execution Flow", values: ["Queue-based execution", "Back-and-forth iterations", "Breaks before production", "Structured, fast execution"] },
-                    { label: "Scalability", values: ["Bottlenecks at scale", "Hard to scale output", "Not workflow-ready", "Built for high volume"] },
+                    { label: "Scalability", values: ["Bottlenecks at scale", "Hard to scale output", "Broken workflow", "Built for high volume"] },
                     { label: "Outcome", values: ["Delayed launches", "Missed timelines", "Never goes live", "Launch-ready"] },
                   ].map((row, i, arr) => (
                     <tr key={row.label} className={i < arr.length - 1 ? "border-b border-border/50" : ""}>
