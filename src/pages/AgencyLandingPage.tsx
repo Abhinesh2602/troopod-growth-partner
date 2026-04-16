@@ -201,7 +201,7 @@ const AgencyLandingPage = () => {
 
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
               <a
-                href="mailto:hello@troopod.io"
+                href="mailto:nj@troopod.io"
                 className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-8 py-4 text-base font-medium hover:opacity-90 transition-opacity"
               >
                 Go Live in 24 hrs
@@ -541,7 +541,7 @@ const AgencyLandingPage = () => {
             </p>
 
             <a
-              href="mailto:hello@troopod.io"
+              href="mailto:nj@troopod.io"
               className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-8 py-4 text-base font-medium hover:opacity-90 transition-opacity"
             >
               Go Live today
