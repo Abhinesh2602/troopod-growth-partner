@@ -72,3 +72,29 @@
     @apply px-6 md:px-12 lg:px-24 py-12 md:py-16;
   }
 }
+
+@keyframes timeline-travel {
+  0% { left: 0; }
+  40% { left: 50%; }
+  100% { left: 100%; }
+}
+
+@keyframes timeline-line-grow {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+@keyframes dot-pulse {
+  0%, 60% { opacity: 0.3; transform: scale(0.8); }
+  80%, 100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes dot-pulse-mid {
+  0%, 30% { opacity: 0.3; transform: scale(0.8); }
+  50%, 100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes dot-pulse-first {
+  0%, 5% { opacity: 0.3; transform: scale(0.8); }
+  20%, 100% { opacity: 1; transform: scale(1); }
+}
