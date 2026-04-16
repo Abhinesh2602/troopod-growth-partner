@@ -63,6 +63,14 @@ const ProductCardsSection = () => {
   const offset = total;
   const [current, setCurrent] = useState(offset);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const prev = () => setCurrent((c) => c - 1);
   const next = () => setCurrent((c) => c + 1);
@@ -101,8 +109,8 @@ const ProductCardsSection = () => {
 
   const items = [...productCards, ...productCards, ...productCards];
 
-  const cardWidth = typeof window !== 'undefined' && window.innerWidth < 640 ? 300 : 540;
-  const cardGap = typeof window !== 'undefined' && window.innerWidth < 640 ? 16 : 24;
+  const cardWidth = isMobile ? 300 : 540;
+  const cardGap = isMobile ? 16 : 24;
 
   const getTransform = () => {
     return `translateX(calc(50% - ${current * (cardWidth + cardGap) + cardWidth / 2}px))`;
