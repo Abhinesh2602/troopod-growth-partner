@@ -343,6 +343,8 @@ const AnimatedMetric = ({ prefix, value, suffix }: { prefix: string; value: numb
   );
 };
 
+const AGENCY_SCROLL_KEY = "agency-scroll-position";
+
 const AgencyLandingPage = () => {
   const timelineRef = useRef<HTMLDivElement>(null);
   const [timelineVisible, setTimelineVisible] = useState(false);
@@ -361,6 +363,22 @@ const AgencyLandingPage = () => {
     );
     observer.observe(el);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+    const saved = sessionStorage.getItem(AGENCY_SCROLL_KEY);
+    if (saved) {
+      const y = parseInt(saved, 10);
+      sessionStorage.removeItem(AGENCY_SCROLL_KEY);
+      const restore = () => window.scrollTo(0, y);
+      restore();
+      requestAnimationFrame(restore);
+      const t = setTimeout(restore, 100);
+      return () => clearTimeout(t);
+    }
   }, []);
 
   return (
@@ -398,7 +416,7 @@ const AgencyLandingPage = () => {
               <p className="text-sm font-medium text-muted-foreground tracking-wide mb-6 px-4">
                 Used by performance teams<br className="sm:hidden" /> behind leading DTC brands
               </p>
-              <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+              <div className="md:hidden overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
                 <div className="flex gap-6 w-max animate-marquee">
                   {[...trustLogos, ...trustLogos, ...trustLogos, ...trustLogos].map((logo, i) => (
                     <div key={`${logo.name}-${i}`} className="flex-shrink-0">
@@ -419,6 +437,26 @@ const AgencyLandingPage = () => {
                     </div>
                   ))}
                 </div>
+              </div>
+              <div className="hidden md:flex flex-wrap justify-center gap-6">
+                {trustLogos.map((logo) => (
+                  <div key={logo.name} className="flex-shrink-0">
+                    <div className="h-20 w-44 rounded-lg bg-white flex items-center justify-center overflow-hidden p-4">
+                      {logo.type === "image" && logo.src ? (
+                        <img
+                          src={logo.src}
+                          alt={logo.name}
+                          className={`max-w-full object-contain max-h-full ${logo.scale || ""}`}
+                        />
+                      ) : (
+                        <span className="font-mono font-bold tracking-wider flex items-baseline gap-0.5">
+                          <span className="text-[#1a1a2e]/60 text-xs tracking-[3px]">NJ</span>
+                          <span className="text-[#1a1a2e] text-2xl">RAMS</span>
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -509,6 +547,9 @@ const AgencyLandingPage = () => {
             <div className="flex justify-center mt-8">
               <a
                 href="/#solutions"
+                onClick={() => {
+                  sessionStorage.setItem(AGENCY_SCROLL_KEY, String(window.scrollY));
+                }}
                 className="inline-flex items-center justify-center rounded-lg border border-border text-foreground px-8 py-4 text-base font-medium hover:bg-secondary transition-colors"
               >
                 Explore all solutions
