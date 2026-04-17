@@ -587,7 +587,7 @@ const AgencyLandingPage = () => {
                           className="absolute inset-0 rounded-full origin-left"
                           style={{
                             background: 'linear-gradient(90deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
-                            animation: timelineVisible ? 'timeline-line-grow 4.5s ease-out forwards' : 'none',
+                            animation: timelineVisible ? 'timeline-line-grow 4.5s linear forwards' : 'none',
                             transform: timelineVisible ? undefined : 'scaleX(0)',
                             boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
                           }}
@@ -598,7 +598,7 @@ const AgencyLandingPage = () => {
                             width: 12,
                             height: 12,
                             top: -5,
-                            animation: timelineVisible ? 'timeline-travel 4.5s ease-out forwards' : 'none',
+                            animation: timelineVisible ? 'timeline-travel 4.5s linear forwards' : 'none',
                             opacity: timelineVisible ? undefined : 0,
                             background: 'hsl(262 83% 58%)',
                             boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
@@ -640,7 +640,7 @@ const AgencyLandingPage = () => {
                           className="absolute inset-0 rounded-full origin-top"
                           style={{
                             background: 'linear-gradient(180deg, hsl(262 83% 58%), hsl(262 83% 58% / 0.4))',
-                            animation: timelineVisible ? 'timeline-line-grow-v 4.5s ease-out forwards' : 'none',
+                            animation: timelineVisible ? 'timeline-line-grow-v 4.5s linear forwards' : 'none',
                             transform: timelineVisible ? undefined : 'scaleY(0)',
                             boxShadow: '0 0 8px hsl(262 83% 58% / 0.4)',
                           }}
@@ -651,7 +651,7 @@ const AgencyLandingPage = () => {
                             width: 12,
                             height: 12,
                             left: -5,
-                            animation: timelineVisible ? 'timeline-travel-v 4.5s ease-out forwards' : 'none',
+                            animation: timelineVisible ? 'timeline-travel-v 4.5s linear forwards' : 'none',
                             opacity: timelineVisible ? undefined : 0,
                             background: 'hsl(262 83% 58%)',
                             boxShadow: '0 0 16px hsl(262 83% 58% / 0.9), 0 0 30px hsl(262 83% 58% / 0.4)',
